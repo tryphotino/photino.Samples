@@ -1,0 +1,1 @@
+protoc --proto_path=..\Protos\ greet.proto --js_out=import_style=commonjs:..\src\ --grpc-web_out=import_style=commonjs,mode=grpcwebtext:..\src\

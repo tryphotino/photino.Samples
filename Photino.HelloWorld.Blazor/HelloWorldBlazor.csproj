@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Photino.Blazor" Version="1.0.7" />
+    <PackageReference Include="Photino.Blazor" Version="1.0.9" />
   </ItemGroup>
 
   <ItemGroup>

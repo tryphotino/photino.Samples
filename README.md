@@ -1,33 +1,29 @@
-# WebWindow
+# Build native, cross-platform desktop apps
 
-For information, see [this blog post](https://blog.stevensanderson.com/2019/11/18/2019-11-18-webwindow-a-cross-platform-webview-for-dotnet-core/).
+Photino is a lightweight open-source framework for building native,  
+cross-platform desktop applications with Web UI technology.
 
-# Usage instructions
+Photino enables developers to use fast, natively compiled languages like C#, C++, Java and more. Use your favorite development frameworks like .NET 5, and build desktop apps with Web UI frameworks, like Blazor, React, Angular, Vue, etc.!
 
-Unless you want to change the `WebWindow` library itself, you do not need to build this repo yourself. If you just want to use it in an app, grab the [prebuilt NuGet package](https://www.nuget.org/packages/WebWindow) or follow [these 'hello world' example steps](https://blog.stevensanderson.com/2019/11/18/2019-11-18-webwindow-a-cross-platform-webview-for-dotnet-core/).
+Photino uses the OSs built-in WebKit-based browser control for Windows, macOS and Linux.
+Photino is the lightest cross-platform framework. Compared to Electron, a Photino app is up to 110 times smaller! And it uses far less system memory too!
 
 # Samples
 
-For samples, open the `WebWindow.Samples.sln` solution
+This repo contains samples for Photino projects using the following Web Frameworks:
+  * MS Blazor
+  * Vue.JS
+  * Angular
+  * React
+This repo also contains a sample built with plain vanilla htnml/css/js.
+Additionally, this repo contains a sample that implements GRPC calls.
 
-These projects reference the prebuilt NuGet package so can be built without building the native code in this repo.
+Contribute to this project if you would like to add additional support for frameworks currently not supported by Photino.
+If you would like to start working with Photino and a particular supported framework, you can either start with using one of the sample projects, or check out the repo with Visual Studio Project Templates for the individual frameworks:
+https://github.com/tryphotino/PhotinoSamples.VSCodeTemplates
 
-# How to build this repo
+# Troubleshooting
 
-If you want to build the `WebWindow` library itself, you will need:
-
- * Windows, Mac, or Linux
- * Node.js (because `WebWindow.Blazor.JS` includes TypeScript code, so the build process involves calling Node to perform a Webpack build)
- * If you're on Windows:
-   * Use Visual Studio with C++ support enabled. You *must* build in x64 configuration (*not* AnyCPU, which is the default).
-   * If things don't seem to be updating, try right-clicking one of the `testassets` projects and choose *Rebuild* to force it to rebuild the native assets.
- * If you're on macOS:
-   * Install Xcode so that you have the whole `gcc` toolchain available on the command line.
-   * From the repo root, run `dotnet build src/WebWindow/WebWindow.csproj`
-   * Then you can `cd testassets/HelloWorldApp` and `dotnet run`
- * If you're on Linux (tested with Ubuntu 18.04):
-   * Install dependencies: `sudo apt-get update && sudo apt-get install libgtk-3-dev libwebkit2gtk-4.0-dev`
-   * From the repo root, run `dotnet build src/WebWindow/WebWindow.csproj`
-   * Then you can `cd testassets/HelloWorldApp` and `dotnet run`
- * If you're on Windows Subsystem for Linux (WSL), then as well as the above, you will need a local X server ([example setup](https://virtualizationreview.com/articles/2017/02/08/graphical-programs-on-windows-subsystem-on-linux.aspx)).
+If you experience issues building the sample projects, first make sure you have restored the required Photino Nuget Packages, and that you're building for x64, and not x86. 
+If you are on Windows, make sure Microsoft Edge Dev is installed: https://www.microsoftedgeinsider.com/en-us/download.
 

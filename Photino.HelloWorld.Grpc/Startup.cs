@@ -17,7 +17,8 @@ namespace HelloWorldGRpc
             {
                 options.AddPolicy("AllowLocalgRpc", builder =>
                 {
-                    builder.WithOrigins("null")    //for security, default to only accepting calls from the local machine
+                    //for security, default to only accepting gRPC calls and only from the local machine
+                    builder.WithOrigins("null", "http://localhost", "https://localhost", "http://127.0.0.1", "https://127.0.0.1")
                         .AllowAnyMethod()
                         .AllowAnyHeader()
                         .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");

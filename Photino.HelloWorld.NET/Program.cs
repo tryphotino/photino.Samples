@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using photino=PhotinoNET;
 
 namespace HelloWorldApp
 {
@@ -9,14 +10,7 @@ namespace HelloWorldApp
         [STAThread]
         static void Main(string[] args)
         {
-            var window = new PhotinoNET.PhotinoNET("My great app", options =>
-            {
-                options.SchemeHandlers.Add("app", (string url, out string contentType) =>
-                {
-                    contentType = "text/javascript";
-                    return new MemoryStream(Encoding.UTF8.GetBytes("alert('super')"));
-                });
-            });
+            var window = new photino.PhotinoNET("My first Photino app", options => { });
 
             window.OnWebMessageReceived += (sender, message) =>
             {
@@ -24,6 +18,7 @@ namespace HelloWorldApp
             };
 
             window.NavigateToLocalFile("wwwroot/index.html");
+            
             window.WaitForExit();
         }
     }

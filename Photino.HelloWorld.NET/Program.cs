@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IO;
-using System.Text;
-using PhotinoWindow=PhotinoNET.PhotinoNET;
+using PhotinoWindow = PhotinoNET.PhotinoNET;
 
 namespace HelloPhotino
 {

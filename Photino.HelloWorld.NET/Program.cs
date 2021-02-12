@@ -1,16 +1,16 @@
 ﻿using System;
 using System.IO;
 using System.Text;
-using photino=PhotinoNET;
+using PhotinoWindow=PhotinoNET.PhotinoNET;
 
-namespace HelloWorldApp
+namespace HelloPhotino
 {
     class Program
     {
         [STAThread]
         static void Main(string[] args)
         {
-            var window = new photino.PhotinoNET("My first Photino app", options => { });
+            var window = new PhotinoWindow("My first Photino app", options => { });
 
             window.OnWebMessageReceived += (sender, message) =>
             {

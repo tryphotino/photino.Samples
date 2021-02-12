@@ -9,17 +9,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldApp", "Photino.HelloWorld.NET\HelloWorldApp.csproj", "{80D46AA9-0F05-4DEC-93B6-517845FCEC1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotinoApp", "Photino.HelloWorld.NET\HelloPhotinoApp.csproj", "{80D46AA9-0F05-4DEC-93B6-517845FCEC1B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldGRpc", "Photino.HelloWorld.Grpc\HelloWorldGRpc.csproj", "{F0B4CAEC-CDEE-4B72-9988-AF49A4039C63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotinoGRpc", "Photino.HelloWorld.Grpc\HelloPhotinoGRpc.csproj", "{F0B4CAEC-CDEE-4B72-9988-AF49A4039C63}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldBlazor", "Photino.HelloWorld.Blazor\HelloWorldBlazor.csproj", "{E2928617-8185-4CD7-B11D-5D4486F1C553}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotinoBlazor", "Photino.HelloWorld.Blazor\HelloPhotinoBlazor.csproj", "{E2928617-8185-4CD7-B11D-5D4486F1C553}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldAngular", "Photino.HelloWorld.Angular\HelloWorldAngular.csproj", "{18B2F41F-9D52-4D4A-8375-B5E1677CE870}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotinoAngular", "Photino.HelloWorld.Angular\HelloPhotinoAngular.csproj", "{18B2F41F-9D52-4D4A-8375-B5E1677CE870}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldReact", "Photino.HelloWorld.React\HelloWorldReact.csproj", "{4FBDD037-4058-4166-89F0-E75C4026CA36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotinoReact", "Photino.HelloWorld.React\HelloPhotinoReact.csproj", "{4FBDD037-4058-4166-89F0-E75C4026CA36}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldVue", "Photino.HelloWorld.Vue\HelloWorldVue.csproj", "{EFC7D5FB-323F-4529-A0DB-E57B8D409024}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotinoVue", "Photino.HelloWorld.Vue\HelloPhotinoVue.csproj", "{EFC7D5FB-323F-4529-A0DB-E57B8D409024}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

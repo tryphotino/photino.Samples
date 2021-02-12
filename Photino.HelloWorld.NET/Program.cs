@@ -8,7 +8,7 @@ namespace HelloPhotino
         [STAThread]
         static void Main(string[] args)
         {
-            var window = new PhotinoWindow("My first Photino app", options => { });
+            var window = new PhotinoWindow("Hello Photino Ppp", options => { });
 
             window.OnWebMessageReceived += (sender, message) =>
             {

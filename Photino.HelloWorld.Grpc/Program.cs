@@ -4,7 +4,7 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace HelloWorldGRpc
+namespace HelloPhotinoGRpc
 {
     //https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld#write-client-code
     class Program
@@ -14,10 +14,12 @@ namespace HelloWorldGRpc
         {
             CreateHostBuilder(args).Build().RunAsync(); ;
 
-            var window = new PhotinoNET.PhotinoNET("gRPC Enabled!", options =>
+            var window = new PhotinoNET.PhotinoNET("Hello Photino gRPC Enabled App", options =>
             {
                 options.SchemeHandlers.Add("app", (string url, out string contentType) =>
                 {
+                    //This code demonstrates setting up a 'channel' to inject JavaScript.
+                    //See the <script src="app://something.js"></script> tag in Index.html
                     contentType = "text/javascript";
                     return new MemoryStream(Encoding.UTF8.GetBytes("alert('super')"));
                 });

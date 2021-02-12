@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace HelloWorldGRpc
+namespace HelloPhotinoGRpc
 {
     public class Startup
     {

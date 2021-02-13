@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using PhotinoNET;
 using System;
 using System.IO;
 using System.Text;
@@ -14,7 +15,7 @@ namespace HelloPhotinoGRpc
         {
             CreateHostBuilder(args).Build().RunAsync(); ;
 
-            var window = new PhotinoNET.PhotinoNET("Hello Photino gRPC Enabled App", options =>
+            var window = new PhotinoWindow("Hello Photino gRPC Enabled App", options =>
             {
                 options.SchemeHandlers.Add("app", (string url, out string contentType) =>
                 {

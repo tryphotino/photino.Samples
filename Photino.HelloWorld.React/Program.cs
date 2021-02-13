@@ -1,5 +1,5 @@
-﻿using System;
-using PhotinoWindow = PhotinoNET.PhotinoNET;
+﻿using PhotinoNET;
+using System;
 
 namespace HelloPhotinoReact
 {

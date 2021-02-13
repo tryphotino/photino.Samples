@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "HelloWorldGRpc": {
-      "commandName": "Project",
-      "nativeDebugging": true
-    }
-  }
-}

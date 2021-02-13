@@ -1,0 +1,22 @@
+{
+    "name": "HelloPhotino.GRpc",
+    "version": "1.0.0",
+    "description": "",
+    "author": "",
+    "scripts": {
+        "build": "npx webpack"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@grpc/grpc-js": "latest",
+        "@grpc/proto-loader": "latest",
+        "async": "latest",
+        "google-protobuf": "latest",
+        "grpc-web": "latest",
+        "lodash": "latest",
+        "webpack": "latest",
+        "webpack-cli": "latest"
+    },
+    "keywords": [],
+    "license": "Apache"
+}

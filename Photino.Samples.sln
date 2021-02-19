@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.Vue", "Photino
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.GRpc", "Photino.HelloPhotino.GRpc\HelloPhotino.GRpc.csproj", "{BEE66206-8CF1-4B52-9FE8-6B80DB0A8BDB}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.3d", "Photino.HelloPhotino.3d\HelloPhotino.3d.csproj", "{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,14 @@ Global
 		{BEE66206-8CF1-4B52-9FE8-6B80DB0A8BDB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BEE66206-8CF1-4B52-9FE8-6B80DB0A8BDB}.Release|x64.ActiveCfg = Release|Any CPU
 		{BEE66206-8CF1-4B52-9FE8-6B80DB0A8BDB}.Release|x64.Build.0 = Release|Any CPU
+		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Debug|x64.Build.0 = Debug|Any CPU
+		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Release|x64.ActiveCfg = Release|Any CPU
+		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,7 +11,7 @@ namespace HelloPhotino.ThreeD
             var window = new PhotinoWindow("Hello Photino 3D!", options => { });
             window.NavigateToLocalFile("wwwroot/index.html");
 
-            window.Width = 2048;
+            window.Width = 1920;
             window.Height = 1080;
 
             window.WaitForExit();

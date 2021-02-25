@@ -64,9 +64,7 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "postbuild": "run-script-os",
-    "postbuild:windows": "move build ../HelloPhotino.Advanced.3d/bin/x64/Debug/net5.0/wwwroot/",
-    "postbuild:darwin:linux": "mv build ../HelloPhotino.Advanced.3d/bin/x64/Debug/net5.0/wwwroot/",
+
     "test": "node scripts/test.js"
   },
   "eslintConfig": {

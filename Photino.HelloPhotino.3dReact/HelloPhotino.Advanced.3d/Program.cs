@@ -20,7 +20,9 @@ namespace HelloPhotino.Advanced.ThreeD
             };
             window.Width = 4000;
             window.Height = 3000;
-            window.NavigateToLocalFile("wwwroot/build/index.html");
+
+            //navigate up the folders into the build folder for the 3d React App
+            window.NavigateToLocalFile("../../../../../HelloPhotino.Advanced.3d.Web/build/index.html");
             window.WaitForExit();
         }
     }

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photino.NET Demo App + ASP.NET Core API</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/fontawsome.all.min.css">
+    <script src="assets/js/vue-moment.min.js"></script>
+    <script src="assets/js/vue-3.0.5.js"></script>
+    <script src="js-asset://photino.js"></script>
+</head>
+<body>
+    <div id="app">
+        <img class="logo" src="assets/photino-logo.svg" alt="Photino" />
+
+        <h1 class="title display-6 text-center">{{ title }}</h1>
+
+        <div class="container">
+            <div class="row row-cols-5">
+                <weather-card
+                    v-for="item in forecast"
+                    v-bind:today="item"
+                    v-bind:key="item.date"
+                ></weather-card>
+            </div>
+        </div>
+        
+        <div class="reload text-center">
+            <button type="button" class="btn btn-primary" @click="updateForecast">Update Forecast</button>
+        </div>
+    </div>
+    <script>
+        const Weather = {
+            data() {
+                return {
+                    title: "Weather API App",
+                    forecast: []
+                };
+            },
+            methods: {
+                updateForecast() {
+                    fetch(`${photinoApiBaseUri}/WeatherForecast`)
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            this.forecast = data;
+                        });
+                }
+            },
+            mounted() {
+                console.log("Weather App mounted.");
+                this.updateForecast();
+            }
+        };
+            
+        const app = Vue.createApp(Weather);
+
+        app.component("weather-card", {
+            props: ['today'],
+            methods: {
+                dayOfWeek(value) {
+                    if (!value) return '';
+
+                    console.log(value);
+                    const date = Date.parse(value);
+                    const formatted = new Intl.DateTimeFormat('en-US', { weekday: 'long' }).format(date);
+
+                    return formatted;
+                }
+            },
+            template: `
+                <div class="col">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h1><i :class=today.icon></i></h1>
+                            <h4 class="card-title">{{ today.summary }}</h4>
+                            <p class="card-text">{{ today.temperatureC }}°C / {{ today.temperatureF }}°F</p>
+                        </div>
+                        <div class="card-footer">
+                            {{ dayOfWeek(today.date) }}
+                        </div>
+                    </div>
+                </div>
+            `
+        });
+        
+        app.mount('#app');
+    </script>
+</body>
+</html>

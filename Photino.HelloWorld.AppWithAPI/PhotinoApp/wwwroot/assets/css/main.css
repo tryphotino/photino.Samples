@@ -1,0 +1,14 @@
+.logo {
+    display: block;
+    width: 300px;
+    height: auto;
+    margin: 5em auto 1em;
+}
+
+.title {
+    margin: 0 0 2em 0;
+}
+
+.reload {
+    margin: 2em 0 1em;
+}

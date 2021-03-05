@@ -8,11 +8,11 @@ namespace HelloPhotino.ThreeD
         [STAThread]
         static void Main(string[] args)
         {
-            var window = new PhotinoWindow("Hello Photino 3D!", options => { });
+            var window = new PhotinoWindow("PONGINO", options => { });
             window.NavigateToLocalFile("wwwroot/index.html");
 
-            window.Width = 1920;
-            window.Height = 1080;
+            window.Width = 1780;
+            window.Height = 1385;
 
             window.WaitForExit();
         }

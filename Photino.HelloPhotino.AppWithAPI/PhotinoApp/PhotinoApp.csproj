@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PhotinoAPI\PhotinoAPI.csproj" />
+    <PackageReference Include="Photino.NET" Version="0.9.0-dev-20210306.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Photino.NET" Version="1.0.9" />
+    <ProjectReference Include="..\PhotinoAPI\PhotinoAPI.csproj" />
   </ItemGroup>
 
   <ItemGroup>

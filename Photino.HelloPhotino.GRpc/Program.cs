@@ -18,7 +18,7 @@ namespace HelloPhotino.GRpc
             var window = new PhotinoWindow("Hello Photino gRPC Enabled!"
                 , options =>
                     {
-                        options.SchemeHandlers.Add("app", (string url, out string contentType) =>
+                        options.CustomSchemeHandlers.Add("app", (string url, out string contentType) =>
                         {
                             //This code demonstrates setting up a 'channel' to inject JavaScript.
                             //See the <script src="app://something.js"></script> tag in Index.html
@@ -26,16 +26,16 @@ namespace HelloPhotino.GRpc
                             return new MemoryStream(Encoding.UTF8.GetBytes("alert('super')"));
                         });
                     }
-                , x:5
-                , y:5);
+                , left:5
+                , top:5);
 
-            window.OnWebMessageReceived += (sender, message) =>
+            window.RegisterWebMessageReceivedHandler((sender, message) =>
             {
-                window.SendMessage("Got message: " + message);
-            };
+                window.SendWebMessage("Got message: " + message);
+            });
 
-            window.NavigateToLocalFile("wwwroot/index.html");
-            window.WaitForExit();
+            window.Load("wwwroot/index.html");
+            window.WaitForClose();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

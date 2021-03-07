@@ -1,10 +1,12 @@
-﻿using System;
-using PhotinoNET;
+﻿using PhotinoNET;
+using System;
 
 namespace HelloWorldApp
 {
     class Program
     {
+        static PhotinoWindow _mainWindow;
+
         [STAThread]
         static void Main(string[] args)
         {
@@ -13,6 +15,8 @@ namespace HelloWorldApp
                 .RegisterWebMessageReceivedHandler(NewWindowMessageDelegate)
                 .Resize(600, 400)
                 .Center();
+
+            _mainWindow = mainWindow;
 
             mainWindow
                 .Load("wwwroot/main.html")
@@ -32,6 +36,12 @@ namespace HelloWorldApp
 
         static void NewWindowMessageDelegate(object sender, string message)
         {
+            if (OperatingSystem.IsWindows())
+            {
+                _mainWindow.SendWebMessage("Sorry, multi-window is not yet supported on Windows  :-)");
+                return;
+            }
+
             var window = (PhotinoWindow)sender;
 
             if (message == "random-window")

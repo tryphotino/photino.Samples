@@ -10,14 +10,14 @@ namespace HelloPhotino.Angular
         {
             var window = new PhotinoWindow("Hello Photino Angular!"
                 , options => { }
-                , x:10
-                , y:10
+                , left:10
+                , top:10
                 , width:900
                 , height:800);
 
-            window.NavigateToLocalFile("wwwroot/index.html");
+            window.Load("wwwroot/index.html");
          
-            window.WaitForExit();
+            window.WaitForClose();
         }
     }
 }

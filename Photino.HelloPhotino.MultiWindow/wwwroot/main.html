@@ -23,6 +23,8 @@
                 .addEventListener('click', event => {
                     window.external.sendMessage('close-window');
                 });
+
+            window.external.receiveMessage(message => alert(message));
         })();
     </script>
 </body>

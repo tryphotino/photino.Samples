@@ -10,14 +10,14 @@ namespace HelloPhotino.NET
         {
             var window = new PhotinoWindow("Hello Photino .NET!", options => { });
 
-            window.OnWebMessageReceived += (sender, message) =>
+            window.RegisterWebMessageReceivedHandler((sender, message) =>
             {
-                window.SendMessage("Got message: " + message);
-            };
+                window.SendWebMessage("Got message: " + message);
+            });
 
-            window.NavigateToLocalFile("wwwroot/index.html");
+            window.Load("wwwroot/index.html");
             
-            window.WaitForExit();
+            window.WaitForClose();
         }
     }
 }

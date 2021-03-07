@@ -10,14 +10,14 @@ namespace HelloPhotino.React
         {
             var window = new PhotinoWindow("Hello Photino React App"
                 , options => { }
-                , x:15
-                , y:15
+                , left:15
+                , top:15
                 , width:600
                 , height:400);
 
-            window.NavigateToLocalFile("wwwroot/index.html");
+            window.Load("wwwroot/index.html");
 
-            window.WaitForExit();
+            window.WaitForClose();
         }
     }
 }

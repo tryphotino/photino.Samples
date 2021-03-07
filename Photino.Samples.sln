@@ -128,6 +128,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "threejs", "threejs", "{50B8
 		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\threejs\ThreeEntryPoint.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\threejs\ThreeEntryPoint.js
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.AdvancedNET", "Photino.HelloPhotino.AdvancedNET\HelloPhotino.AdvancedNET.csproj", "{349BB1E2-B4F3-4960-900C-101C4D0FFB80}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -224,6 +226,14 @@ Global
 		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Release|x64.ActiveCfg = Release|x64
 		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Release|x64.Build.0 = Release|x64
+		{349BB1E2-B4F3-4960-900C-101C4D0FFB80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{349BB1E2-B4F3-4960-900C-101C4D0FFB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{349BB1E2-B4F3-4960-900C-101C4D0FFB80}.Debug|x64.ActiveCfg = Debug|x64
+		{349BB1E2-B4F3-4960-900C-101C4D0FFB80}.Debug|x64.Build.0 = Debug|x64
+		{349BB1E2-B4F3-4960-900C-101C4D0FFB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{349BB1E2-B4F3-4960-900C-101C4D0FFB80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{349BB1E2-B4F3-4960-900C-101C4D0FFB80}.Release|x64.ActiveCfg = Release|x64
+		{349BB1E2-B4F3-4960-900C-101C4D0FFB80}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

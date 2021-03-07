@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photino.NET Demo</title>
+    <link rel="stylesheet" href="assets/main.css" />
+</head>
+<body>
+    <img src="assets/photino-logo.svg" alt="Photino" class="logo center" />
+
+    <h1 class="text-center">Hello to Photino.NET Advanced</h1>
+
+    <p class="text-center">
+        This is a static HTML file with CSS and JavaScript, served from a local web root. Click on the buttons below to send messages to the backend.
+    </p>
+
+    <p>
+        <h3 class="text-center">Inter Process Communication (IPC)</h3>
+        <button class="primary center" onclick="callDotNet()">Call .NET via text passed to a memory buffer</button>
+    </p>
+
+    <p>
+        <h3 class="text-center">WebAPI Interactions and Swagger</h3>
+        <button class="primary center" onclick="showSwagger()">Show the Swagger page for the local WebAPI</button>
+    </p>
+
+    <p>
+        <h3 class="text-center">OS Interaction and PowerShell</h3>
+        <button class="primary center" onclick="getPrinters()">Call local WebAPI to get a list of local printers</button>
+    </p>
+
+    <p>
+        <button class="primary center" onclick="getPowerShellCmdlets()">Get a list of supported PowerShell Cmdlets</button>
+    </p>
+
+    <p>
+        <center>
+            <input type="text" id="txtPowerShell" value="Get-TimeZone" />
+            <button class="primary" onclick="runPowerShellCmdlet()">Run a supported PowerShell Cmdlet</button>
+        </center>
+    </p>
+
+    <p>
+        <h3 class="text-center">System Dialogs</h3>
+        <button class="primary center" onclick="getFile()">Call local WebAPI for Open File dialog</button>
+    </p>
+
+    <p>
+        <button class="primary center" onclick="saveFile()">Call local WebAPI for Save File dialog</button>
+    </p>
+
+    <p>
+        <button class="primary center" onclick="getColor()">Call local WebAPI for Color Picker dialog</button>
+    </p>
+
+    <script src="app://dynamic.js"></script>
+
+    <script>
+        function callDotNet() {
+            window.external.sendMessage('Hi .NET! 🤖');
+        }
+
+        window.external.receiveMessage(message => alert(message));
+
+        function showSwagger() {
+            window.location = 'http://localhost:5000/swagger';
+        }
+
+        function getPrinters() {
+            fetch('http://localhost:5000/home/getprinters')
+                .then(response => response.json())
+                .then(printers => alert('Your local printers are:\n\n'
+                    + printers.sort().map(x => '* ' + x).join('\n')))
+                .catch(error => alert(error));
+        }
+
+        function getPowerShellCmdlets() {
+            fetch('http://localhost:5000/home/getpowershellcmdlets')
+                .then(response => response.json())
+                .then(commands => alert('Supported PowerShell Cmdlets are:\n\n'
+                    + commands.sort().map(x => '* ' + x).join('\n')))
+                .catch(error => alert(error));
+        }
+
+        function runPowerShellCmdlet() {
+            let powerShellCommand = document.getElementById("txtPowerShell").value;
+            if (!powerShellCommand || powerShellCommand.length < 1) {
+                alert("Please enter a valid PowerShell cmdlet");
+                return;
+            }
+
+            fetch('http://localhost:5000/home/runpowershellcmdlet',
+                {
+                    method: 'post',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ 'command': powerShellCommand })
+                })
+                .then(response => response.json())
+                .then(lines => {
+                    alert('PowerShell Cmdlet returned:\n\n'
+                        + lines.sort().map(x => '* ' + x).join('\n'));
+                })
+                .catch(error => alert(error));
+        }
+
+        function getFile() {
+            fetch('http://localhost:5000/home/getfile')
+                .then(response => response.text())
+                .then(fileName => alert(fileName))
+                .catch(error => alert(error));
+        }
+
+        function saveFile() {
+            fetch('http://localhost:5000/home/savefile')
+                .then(response => response.text())
+                .then(fileName => alert(fileName))
+                .catch(error => alert(error));
+        }
+
+        function getColor() {
+            fetch('http://localhost:5000/home/getcolor')
+                .then(response => response.text())
+                .then(fileName => alert(fileName))
+                .catch(error => alert(error));
+        }
+    </script>
+</body>
+</html>

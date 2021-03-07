@@ -23,7 +23,110 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.GRpc", "Photin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.3d", "Photino.HelloPhotino.3d\HelloPhotino.3d.csproj", "{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.Advanced.3d", "Photino.HelloPhotino.3dReact\HelloPhotino.Advanced.3d\HelloPhotino.Advanced.3d.csproj", "{CE05B1DC-38D5-4FC7-91FD-DC75F335635F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Photino.HelloPhotino.AppWithAPI", "Photino.HelloPhotino.AppWithAPI", "{6CE4A5ED-83E1-4CEC-A7E3-F03B96604A88}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotinoAPI", "Photino.HelloPhotino.AppWithAPI\PhotinoAPI\PhotinoAPI.csproj", "{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotinoApp", "Photino.HelloPhotino.AppWithAPI\PhotinoApp\PhotinoApp.csproj", "{8677E9AF-F2B4-4119-8553-4C77C2AF3470}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.MultiWindow", "Photino.HelloPhotino.MultiWindow\HelloPhotino.MultiWindow.csproj", "{05636144-2758-403E-A387-A376381BBE48}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Photino.HelloPhotino.3d.React", "Photino.HelloPhotino.3d.React", "{C53C03EB-6426-4530-9287-A60B9E436753}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.3d.React", "Photino.HelloPhotino.3d.React\HelloPhotino.3d.React\HelloPhotino.3d.React.csproj", "{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HelloPhotino.3d.React.UserInterface", "HelloPhotino.3d.React.UserInterface", "{CE3749EA-23E0-4FCE-B581-E8B5637FD2B5}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\package-lock.json = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\package-lock.json
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\package.json = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\package.json
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\README.md = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\README.md
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\yarn.lock = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\yarn.lock
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{8242AE67-11CB-4E99-9160-1B7632DD534A}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\asset-manifest.json = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\asset-manifest.json
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\favicon.ico = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\favicon.ico
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\index.html = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\index.html
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\logo192.png = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\logo192.png
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\logo512.png = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\logo512.png
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\manifest.json = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\manifest.json
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\precache-manifest.b5b95cb613b7c2b2df1b9d5397d6c9d9.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\precache-manifest.b5b95cb613b7c2b2df1b9d5397d6c9d9.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\robots.txt = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\robots.txt
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\service-worker.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\service-worker.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "static", "static", "{97638272-723F-4374-BE33-60CBEF48BEAA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "css", "css", "{ED52894B-AF57-42D5-BB81-CB4AD8E7D7B7}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\css\main.b100e6da.chunk.css = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\css\main.b100e6da.chunk.css
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\css\main.b100e6da.chunk.css.map = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\css\main.b100e6da.chunk.css.map
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "js", "js", "{7D3E0E17-E0B4-4B3A-A1DB-468533773FAC}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\2.f62043dd.chunk.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\2.f62043dd.chunk.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\2.f62043dd.chunk.js.map = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\2.f62043dd.chunk.js.map
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\main.12cea4e0.chunk.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\main.12cea4e0.chunk.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\main.12cea4e0.chunk.js.map = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\main.12cea4e0.chunk.js.map
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\runtime-main.4c72db2f.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\runtime-main.4c72db2f.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\runtime-main.4c72db2f.js.map = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\build\static\js\runtime-main.4c72db2f.js.map
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{19B039E6-7DA3-4062-B2B8-F027F1194007}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\env.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\env.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\modules.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\modules.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\paths.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\paths.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\pnpTs.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\pnpTs.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\webpack.config.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\webpack.config.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\webpackDevServer.config.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\webpackDevServer.config.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "jest", "jest", "{8BDC93B6-1E45-4EF1-AE07-E7D2C57B8610}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\jest\cssTransform.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\jest\cssTransform.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\jest\fileTransform.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\config\jest\fileTransform.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "public", "public", "{913EA6DC-BBC8-4EEB-BCFE-C2F47074E042}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\favicon.ico = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\favicon.ico
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\index.html = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\index.html
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\logo192.png = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\logo192.png
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\logo512.png = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\logo512.png
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\manifest.json = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\manifest.json
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\robots.txt = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\public\robots.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{71247BEE-1DA0-46D9-96C7-15902031769C}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\scripts\build.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\scripts\build.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\scripts\start.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\scripts\start.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\scripts\test.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\scripts\test.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A5ED8BA6-4F11-409E-99E1-2AF3AB7A5E3A}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\App.css = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\App.css
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\App.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\App.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\App.test.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\App.test.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\index.css = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\index.css
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\index.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\index.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\serviceWorker.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\serviceWorker.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{2E66D5B6-1306-4B79-BE4F-BE7341C9FDCE}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\components\ThreeContainer.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\components\ThreeContainer.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "threejs", "threejs", "{50B8276D-6761-4175-A430-8C8CD05D299C}"
+	ProjectSection(SolutionItems) = preProject
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\threejs\myfont.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\threejs\myfont.js
+		Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\threejs\ThreeEntryPoint.js = Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.UserInterface\src\threejs\ThreeEntryPoint.js
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,17 +192,58 @@ Global
 		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Release|x64.ActiveCfg = Release|Any CPU
 		{FB3CB07E-2A62-4A1A-8CCD-3008E88BD442}.Release|x64.Build.0 = Release|Any CPU
-		{CE05B1DC-38D5-4FC7-91FD-DC75F335635F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CE05B1DC-38D5-4FC7-91FD-DC75F335635F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CE05B1DC-38D5-4FC7-91FD-DC75F335635F}.Debug|x64.ActiveCfg = Debug|x64
-		{CE05B1DC-38D5-4FC7-91FD-DC75F335635F}.Debug|x64.Build.0 = Debug|x64
-		{CE05B1DC-38D5-4FC7-91FD-DC75F335635F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CE05B1DC-38D5-4FC7-91FD-DC75F335635F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CE05B1DC-38D5-4FC7-91FD-DC75F335635F}.Release|x64.ActiveCfg = Release|x64
-		{CE05B1DC-38D5-4FC7-91FD-DC75F335635F}.Release|x64.Build.0 = Release|x64
+		{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE}.Debug|x64.Build.0 = Debug|Any CPU
+		{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE}.Release|x64.ActiveCfg = Release|Any CPU
+		{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE}.Release|x64.Build.0 = Release|Any CPU
+		{8677E9AF-F2B4-4119-8553-4C77C2AF3470}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8677E9AF-F2B4-4119-8553-4C77C2AF3470}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8677E9AF-F2B4-4119-8553-4C77C2AF3470}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8677E9AF-F2B4-4119-8553-4C77C2AF3470}.Debug|x64.Build.0 = Debug|Any CPU
+		{8677E9AF-F2B4-4119-8553-4C77C2AF3470}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8677E9AF-F2B4-4119-8553-4C77C2AF3470}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8677E9AF-F2B4-4119-8553-4C77C2AF3470}.Release|x64.ActiveCfg = Release|Any CPU
+		{8677E9AF-F2B4-4119-8553-4C77C2AF3470}.Release|x64.Build.0 = Release|Any CPU
+		{05636144-2758-403E-A387-A376381BBE48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05636144-2758-403E-A387-A376381BBE48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05636144-2758-403E-A387-A376381BBE48}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{05636144-2758-403E-A387-A376381BBE48}.Debug|x64.Build.0 = Debug|Any CPU
+		{05636144-2758-403E-A387-A376381BBE48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05636144-2758-403E-A387-A376381BBE48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05636144-2758-403E-A387-A376381BBE48}.Release|x64.ActiveCfg = Release|Any CPU
+		{05636144-2758-403E-A387-A376381BBE48}.Release|x64.Build.0 = Release|Any CPU
+		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Debug|x64.ActiveCfg = Debug|x64
+		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Debug|x64.Build.0 = Debug|x64
+		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Release|x64.ActiveCfg = Release|x64
+		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4A9868B6-9996-4CAC-8BA2-A5B6627EC0CE} = {6CE4A5ED-83E1-4CEC-A7E3-F03B96604A88}
+		{8677E9AF-F2B4-4119-8553-4C77C2AF3470} = {6CE4A5ED-83E1-4CEC-A7E3-F03B96604A88}
+		{D0EF2900-F3B9-42E7-A414-FB3354FC93A2} = {C53C03EB-6426-4530-9287-A60B9E436753}
+		{CE3749EA-23E0-4FCE-B581-E8B5637FD2B5} = {C53C03EB-6426-4530-9287-A60B9E436753}
+		{8242AE67-11CB-4E99-9160-1B7632DD534A} = {CE3749EA-23E0-4FCE-B581-E8B5637FD2B5}
+		{97638272-723F-4374-BE33-60CBEF48BEAA} = {8242AE67-11CB-4E99-9160-1B7632DD534A}
+		{ED52894B-AF57-42D5-BB81-CB4AD8E7D7B7} = {97638272-723F-4374-BE33-60CBEF48BEAA}
+		{7D3E0E17-E0B4-4B3A-A1DB-468533773FAC} = {97638272-723F-4374-BE33-60CBEF48BEAA}
+		{19B039E6-7DA3-4062-B2B8-F027F1194007} = {CE3749EA-23E0-4FCE-B581-E8B5637FD2B5}
+		{8BDC93B6-1E45-4EF1-AE07-E7D2C57B8610} = {19B039E6-7DA3-4062-B2B8-F027F1194007}
+		{913EA6DC-BBC8-4EEB-BCFE-C2F47074E042} = {CE3749EA-23E0-4FCE-B581-E8B5637FD2B5}
+		{71247BEE-1DA0-46D9-96C7-15902031769C} = {CE3749EA-23E0-4FCE-B581-E8B5637FD2B5}
+		{A5ED8BA6-4F11-409E-99E1-2AF3AB7A5E3A} = {CE3749EA-23E0-4FCE-B581-E8B5637FD2B5}
+		{2E66D5B6-1306-4B79-BE4F-BE7341C9FDCE} = {A5ED8BA6-4F11-409E-99E1-2AF3AB7A5E3A}
+		{50B8276D-6761-4175-A430-8C8CD05D299C} = {A5ED8BA6-4F11-409E-99E1-2AF3AB7A5E3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {479EC306-1E53-43A8-B7AD-5A2070D22488}

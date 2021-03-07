@@ -18,6 +18,13 @@ namespace HelloWorld.AdvancedNET.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+
+            using (var psCommands = PowerShell.Create())
+            {
+                psCommands.AddCommand("Set-ExecutionPolicy")
+                    .AddParameter("-ExecutionPolicy", "Bypass")
+                    .Invoke();
+            }
         }
 
 

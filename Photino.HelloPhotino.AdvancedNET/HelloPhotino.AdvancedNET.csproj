@@ -8,7 +8,7 @@
   
   <ItemGroup>
     <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.1.2" />
-    <PackageReference Include="Photino.NET" Version="0.9.0-dev-20210307.1" />
+    <PackageReference Include="Photino.NET" Version="1.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.0" />
   </ItemGroup>
 

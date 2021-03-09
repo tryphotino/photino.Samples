@@ -26,16 +26,18 @@
     // when the frontend is started without the Photino context.
     // I.e. using Vue's `npm run serve` command and hot reload.
     if (typeof(window.external.sendMessage) !== 'function') {
-        window.external.sendMessage = (message: string) => console.log("Emulating sendMessage.\nMessage sent: " + message);
+        window.external.sendMessage = (message: string) =>
+            console.log('Emulating sendMessage.\nMessage sent: ' + message);
     }
 
     if (typeof(window.external.receiveMessage) !== 'function') {
         window.external.receiveMessage = (delegate: (message: string) => void) => {
-            let message = 'Simulating message from backend.';
+            const message = 'Simulating message from backend.';
             delegate(message);
         };
 
-        window.external.receiveMessage((message: string) => console.log("Emulating receiveMessage.\nMessage received: " + message));
+        window.external.receiveMessage((message: string) =>
+            console.log('Emulating receiveMessage.\nMessage received: ' + message));
     } else {
         window.external.receiveMessage((message: string) => alert(message));
     }

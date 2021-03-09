@@ -38,7 +38,7 @@ namespace HelloWorldApp
         {
             if (OperatingSystem.IsWindows())
             {
-                _mainWindow.SendWebMessage("Sorry, multi-window is not yet supported on Windows  :-)");
+                _mainWindow.SendWebMessage("Sorry, multi-window is not yet supported on Windows. 🙂");
                 return;
             }
 

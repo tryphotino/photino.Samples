@@ -1,18 +1,18 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloPhotinoVue msg="Welcome to Your Photino Vue.js App"/>
+    <img alt="Photino logo" src="../assets/photino-logo.svg">
+    <HelloPhotino msg="Welcome to Your Photino.Vue App"/>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloPhotinoVue from '@/components/HelloPhotino.vue'
+import HelloPhotino from '@/components/HelloPhotino.vue';
 
 export default {
   name: 'Home',
   components: {
-    HelloPhotinoVue
-  }
-}
+    HelloPhotino,
+  },
+};
 </script>

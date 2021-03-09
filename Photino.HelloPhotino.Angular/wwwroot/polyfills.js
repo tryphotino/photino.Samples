@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/philippbauer/Work/Software/Photino/Photino.Angular/UserInterface/src/polyfills.ts */"hN/g");
+module.exports = __webpack_require__(/*! C:\TFS\Repos\Photino\photino.Test\Photino.HelloPhotino.Angular\UserInterface\src\polyfills.ts */"hN/g");
 
 
 /***/ }),

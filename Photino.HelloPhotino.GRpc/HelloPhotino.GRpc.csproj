@@ -22,10 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\photino.NET\Photino.NET\Photino.NET.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="wwwroot\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

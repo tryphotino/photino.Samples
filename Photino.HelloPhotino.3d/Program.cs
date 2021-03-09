@@ -8,13 +8,21 @@ namespace HelloPhotino.ThreeD
         [STAThread]
         static void Main(string[] args)
         {
-            var window = new PhotinoWindow("PONGINO", options => { });
-            window.Load("wwwroot/index.html");
+            // Window title declared here for visibility
+            string windowTitle = "Photino 3D Pong";
 
-            window.Width = 1780;
-            window.Height = 1385;
+            // Creating a new PhotinoWindow instance with the fluent API
+            var window = new PhotinoWindow(windowTitle)
+                // Resize to a percentage of the main monitor work area
+                .Resize(700, 525)
+                // Center window in the middle of the screen
+                .Center()
+                // Users can resize windows by default.
+                // Let's make this one fixed instead.
+                .UserCanResize(false)
+                .Load("wwwroot/index.html"); // Can be used with relative path strings or "new URI()" instance to load a website.
 
-            window.WaitForClose();
+            window.WaitForClose(); // Starts the application event loop
         }
     }
 }

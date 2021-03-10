@@ -1,60 +1,58 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">typescript</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+    <div>
+        <h1 class="text-center">{{ msg }}</h1>
+
+        <p class="text-center">
+            This is a Vue App served from a local web root. Click on the button below to send a message to the backend. It will respond and send a message back to the UI.
+        </p>
+
+        <button class="primary center" v-on:click="callDotNet(`Hello .NET! 🤖`)">Call .NET</button>
+    </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+    // Declare the necessary interface for messaging functions
+    // in the PhotinoWindow application.
+    declare global {
+        interface External {
+            sendMessage: (message: string) => void;
+            receiveMessage: (delegate: (message: string) => void) => void;
+        }
 
-export default Vue.extend({
-  name: 'HelloPhotinoVue',
-  props: {
-    msg: String,
-  },
-});
+        interface Window { External: object; }
+    }
+
+    // Make sure that sendMessage and receiveMessage exist
+    // when the frontend is started without the Photino context.
+    // I.e. using Vue's `npm run serve` command and hot reload.
+    if (typeof(window.external.sendMessage) !== 'function') {
+        window.external.sendMessage = (message: string) =>
+            console.log('Emulating sendMessage.\nMessage sent: ' + message);
+    }
+
+    if (typeof(window.external.receiveMessage) !== 'function') {
+        window.external.receiveMessage = (delegate: (message: string) => void) => {
+            const message = 'Simulating message from backend.';
+            delegate(message);
+        };
+
+        window.external.receiveMessage((message: string) =>
+            console.log('Emulating receiveMessage.\nMessage received: ' + message));
+    } else {
+        window.external.receiveMessage((message: string) => alert(message));
+    }
+
+    import Vue from 'vue';
+
+    export default Vue.extend({
+        name: 'HelloPhotino',
+        props: {
+            msg: String,
+        },
+        methods: {
+            callDotNet: (message: string) => {
+                window.external.sendMessage(message);
+            },
+        },
+    });
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>

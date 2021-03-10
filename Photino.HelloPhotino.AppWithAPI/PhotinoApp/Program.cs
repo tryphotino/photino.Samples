@@ -38,7 +38,7 @@ namespace PhotinoApp
                 api.StartAsync();
 
                 // Window configuration
-                string windowTitle = "Photino.NET Demo App + ASP.NET Core API";
+                string windowTitle = "Photino for .NET Demo App + ASP.NET API";
 
                 // Prepare the PhotinoWindow instance
                 var window = new PhotinoWindow(windowTitle, WindowConfigurationAction)

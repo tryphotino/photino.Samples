@@ -19,11 +19,14 @@ namespace HelloWorld.AdvancedNET.Controllers
         {
             _logger = logger;
 
-            using (var psCommands = PowerShell.Create())
-            {
-                psCommands.AddCommand("Set-ExecutionPolicy")
-                    .AddParameter("-ExecutionPolicy", "Bypass")
-                    .Invoke();
+
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                using (var psCommands = PowerShell.Create())
+                {
+                    psCommands.AddCommand("Set-ExecutionPolicy")
+                        .AddParameter("-ExecutionPolicy", "Bypass")
+                        .Invoke();
+                }
             }
         }
 

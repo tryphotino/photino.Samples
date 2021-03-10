@@ -15,7 +15,7 @@ namespace HelloWorld.AdvancedNET
         {
             CreateHostBuilder(args).Build().RunAsync();
 
-            string windowTitle = "Hello Photino.NET Advanced!";
+            string windowTitle = "Hello Photino for .NET Advanced!";
 
             Action<PhotinoWindowOptions> windowConfiguration = options =>
             {

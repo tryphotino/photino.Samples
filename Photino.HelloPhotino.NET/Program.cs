@@ -12,7 +12,7 @@ namespace HelloPhotinoApp
         static void Main(string[] args)
         {
             // Window title declared here for visibility
-            string windowTitle = "Photino.NET Demo App";
+            string windowTitle = "Photino for .NET Demo App";
 
             // Define the PhotinoWindow options. Some handlers 
             // can only be registered before a PhotinoWindow instance

@@ -21,6 +21,7 @@ namespace HelloWorld.AdvancedNET.Controllers
 
 
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
                 using (var psCommands = PowerShell.Create())
                 {
                     psCommands.AddCommand("Set-ExecutionPolicy")

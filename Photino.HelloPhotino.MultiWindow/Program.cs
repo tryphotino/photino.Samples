@@ -36,11 +36,11 @@ namespace HelloWorldApp
 
         static void NewWindowMessageDelegate(object sender, string message)
         {
-            if (OperatingSystem.IsWindows())
-            {
-                _mainWindow.SendWebMessage("Sorry, multi-window is not yet supported on Windows. 🙂");
-                return;
-            }
+            //if (OperatingSystem.IsWindows())
+            //{
+            //    _mainWindow.SendWebMessage("Sorry, multi-window is not yet supported on Windows. 🙂");
+            //    return;
+            //}
 
             var window = (PhotinoWindow)sender;
 
@@ -60,13 +60,13 @@ namespace HelloWorldApp
 
                 Action<PhotinoWindowOptions> randomWindowConfiguration = options =>
                 {
-                    options.Parent = window;
+                    //options.Parent = window;
                 };
 
                 new PhotinoWindow($"Random Window ({window.Children.Count + 1})", randomWindowConfiguration, width, height, left, top)
-                    .RegisterWebMessageReceivedHandler(CloseWindowMessageDelegate)
-                    .Load("wwwroot/random.html")
-                    .WaitForClose();
+                    .RegisterWebMessageReceivedHandler(CloseWindowMessageDelegate);
+                    //.Load("wwwroot/random.html")
+                    //.WaitForClose();
             }
         }
     }

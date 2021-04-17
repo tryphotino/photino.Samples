@@ -5,8 +5,8 @@ namespace Win32
 {
     public static class Win32Dialogs
     {
-        [DllImport("Comdlg32.dll", CharSet = CharSet.Auto)]
-        public static extern bool GetOpenFileName([In, Out] OpenFileName ofn);
+        //[DllImport("Comdlg32.dll", CharSet = CharSet.Auto)]
+        //public static extern bool GetOpenFileName([In, Out] OpenFileName ofn);
 
         [DllImport("Comdlg32.dll", CharSet = CharSet.Auto)]
         public static extern bool GetSaveFileName([In, Out] OpenFileName ofn);

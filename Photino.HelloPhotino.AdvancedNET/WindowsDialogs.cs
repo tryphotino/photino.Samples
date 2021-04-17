@@ -49,12 +49,12 @@ namespace WindowsDialogs
             else
                 ofn.defExt = DefaultExtension;
 
-            if (Win32Dialogs.GetOpenFileName(ofn))
-            {
-                File = ofn.file;
-                return DialogResult.OK;
-            }
-            else
+            //if (Win32Dialogs.GetOpenFileName(ofn))
+            //{
+            //    File = ofn.file;
+            //    return DialogResult.OK;
+            //}
+            //else
             {
                 return DialogResult.Cancel;
             }

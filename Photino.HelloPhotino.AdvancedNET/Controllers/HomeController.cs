@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HelloPhotino.AdvancedNET;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -174,13 +175,15 @@ namespace HelloWorld.AdvancedNET.Controllers
                     DefaultExtension = "txt"
                 };
 
-                if (fileDlg.ShowDialog() == WindowsDialogs.DialogResult.OK)
-                {
-                    return fileDlg.File;
-                }
-                else
-                    return "Didn't work";
-            }
+                return CsWin32.MyGetOpenFileName(filter: "Text Files (*.txt)\0*.txt\0Log Files (*.log)\0*.log\0All Files (*.*)\0*.*\0");
+            
+            //    if (fileDlg.ShowDialog() == WindowsDialogs.DialogResult.OK)
+            //    {
+            //        return fileDlg.File;
+            //    }
+            //    else
+            //        return "Didn't work";
+        }
             else
                 return "Only available on Windows at this time.";
         }

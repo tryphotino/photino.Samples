@@ -5,20 +5,19 @@ namespace HelloWorldApp
 {
     class Program
     {
-        static PhotinoWindow _mainWindow;
+        static int _childCount;
 
         [STAThread]
         static void Main(string[] args)
         {
-            var mainWindow = new PhotinoWindow("Main Window")
+            new PhotinoWindow()
+                .SetTitle("Main Window")
                 .RegisterWebMessageReceivedHandler(CloseWindowMessageDelegate)
                 .RegisterWebMessageReceivedHandler(NewWindowMessageDelegate)
-                .Resize(600, 400)
-                .Center();
-
-            _mainWindow = mainWindow;
-
-            mainWindow
+                .SetUseOsDefaultSize(false)
+                .SetWidth(600)
+                .SetHeight(400)
+                .Center()
                 .Load("wwwroot/main.html")
                 .WaitForClose();
         }
@@ -36,12 +35,6 @@ namespace HelloWorldApp
 
         static void NewWindowMessageDelegate(object sender, string message)
         {
-            //if (OperatingSystem.IsWindows())
-            //{
-            //    _mainWindow.SendWebMessage("Sorry, multi-window is not yet supported on Windows. 🙂");
-            //    return;
-            //}
-
             var window = (PhotinoWindow)sender;
 
             if (message == "random-window")
@@ -58,15 +51,19 @@ namespace HelloWorldApp
                 int left = random.Next(offset, workAreaWidth - width - offset);
                 int top = random.Next(offset, workAreaHeight - height - offset);
 
-                Action<PhotinoWindowOptions> randomWindowConfiguration = options =>
-                {
-                    //options.Parent = window;
-                };
+                _childCount++;
 
-                new PhotinoWindow($"Random Window ({window.Children.Count + 1})", randomWindowConfiguration, width, height, left, top)
-                    .RegisterWebMessageReceivedHandler(CloseWindowMessageDelegate);
-                    //.Load("wwwroot/random.html")
-                    //.WaitForClose();
+                new PhotinoWindow()
+                    .SetTitle($"Random Window ({_childCount})")
+                    .SetUseOsDefaultSize(false)
+                    .SetHeight(height)
+                    .SetWidth(width)
+                    .SetUseOsDefaultLocation(false)
+                    .SetTop(top)
+                    .SetLeft(left)
+                    .RegisterWebMessageReceivedHandler(CloseWindowMessageDelegate)
+                    .Load("wwwroot/random.html")
+                    .WaitForClose();
             }
         }
     }

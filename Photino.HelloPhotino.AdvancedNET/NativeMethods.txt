@@ -1,4 +1,0 @@
-﻿CreateFile
-GetTickCount
-GetOpenFileName
-CommDlgExtendedError

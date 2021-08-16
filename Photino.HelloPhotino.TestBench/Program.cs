@@ -50,7 +50,7 @@ namespace HelloPhotino.TestBench
                 //.SetMinimized(true)
                 //.SetResizable(false)
                 //.SetTopMost(true)
-                .SetUseOsDefaultLocation(false)
+                //.SetUseOsDefaultLocation(false)
                 .SetUseOsDefaultSize(false)
                 //.SetZoom(150)
 
@@ -59,9 +59,9 @@ namespace HelloPhotino.TestBench
                 //.SetGrantBrowserPermissions(false)
 
                 //.Center()
-                //.SetSize(new Size(800, 600))
-                .SetHeight(600)
-                .SetWidth(800)
+                .SetSize(800, 600)
+                //.SetHeight(600)
+                //.SetWidth(800)
                 //.SetLocation(new Point(50, 50))
                 //.SetTop(50)
                 //.SetLeft(50)

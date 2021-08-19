@@ -30,6 +30,7 @@ Global
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
+
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{DAFB86BB-4D85-4537-A188-C42390CED35C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DAFB86BB-4D85-4537-A188-C42390CED35C}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -145,5 +146,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E4863659-5A8A-437A-8030-40BA5F772218}
+
 	EndGlobalSection
 EndGlobal

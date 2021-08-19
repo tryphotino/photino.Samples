@@ -7,7 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Photino.NET" Version="1.1.6" />
+    <Compile Remove="HelloPhotino.3d.React\**" />
+    <EmbeddedResource Remove="HelloPhotino.3d.React\**" />
+    <None Remove="HelloPhotino.3d.React\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Photino.NET" Version="0.9.0-dev-20210816.1" />
   </ItemGroup>
 
   <ItemGroup>

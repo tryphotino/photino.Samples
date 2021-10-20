@@ -17,7 +17,7 @@ This repo contains samples for Photino projects using the following Web Framewor
   * React
   
 This repo also contains these samples
-  * Plain vanilla htnml/css/js.
+  * Plain vanilla html/css/js.
   * WebAPI for local communication
   * gRPC for local communication
   * 3D graphics using 3d.js

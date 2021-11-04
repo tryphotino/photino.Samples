@@ -307,6 +307,14 @@ namespace HelloPhotino.TestBench
                 var properties = GetPropertiesDisplay(currentWindow);
                 currentWindow.OpenAlertWindow("Settings", properties);
             }
+            else if (string.Compare(message, "sendWebMessage", true) == 0)
+            {
+                currentWindow.SendWebMessage("alert('web message');");
+            }
+            else if (string.Compare(message, "toastNotification", true) == 0)
+            {
+                currentWindow.SendNotification("Toast Title", " Taoast message!");
+            }
             else
                 throw new Exception($"Unknown message '{message}'");
         }

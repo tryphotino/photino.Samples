@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-    <PackageReference Include="Photino.NET" Version="0.9.0-dev-20211104.2" />
+    <PackageReference Include="Photino.NET" Version="2.1.9" />
   </ItemGroup>
 
   <ItemGroup>

@@ -13,12 +13,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.39.0" />
-    <PackageReference Include="Grpc.AspNetCore.Web" Version="2.39.0" />
-    <PackageReference Include="Grpc.Core" Version="2.40.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+    <PackageReference Include="Grpc.AspNetCore.Web" Version="2.40.0" />
+    <PackageReference Include="Grpc.Core" Version="2.42.0" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
-    <PackageReference Include="Photino.NET" Version="2.0.13" />
+    <PackageReference Include="Photino.NET" Version="2.1.9" />
   </ItemGroup>
 
   <ItemGroup>

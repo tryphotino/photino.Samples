@@ -44,14 +44,14 @@ namespace HelloPhotino.TestBench
                 .Load("wwwroot/main.html")
                 //.LoadRawString("<h1>Hello Photino!</h1>")
 
-                .SetChromeless(true)
+                //.SetChromeless(true)
                 //.SetFullScreen(true)
                 //.SetMaximized(true)
                 //.SetMinimized(true)
                 //.SetResizable(false)
                 //.SetTopMost(true)
                 //.SetUseOsDefaultLocation(false)
-                .SetUseOsDefaultSize(false)
+                //.SetUseOsDefaultSize(false)
                 //.SetZoom(150)
 
                 //.SetContextMenuEnabled(false)
@@ -59,7 +59,7 @@ namespace HelloPhotino.TestBench
                 //.SetGrantBrowserPermissions(false)
 
                 //.Center()
-                .SetSize(800, 600)
+                //.SetSize(800, 600)
                 //.SetHeight(600)
                 //.SetWidth(800)
                 //.SetLocation(new Point(50, 50))
@@ -100,6 +100,7 @@ namespace HelloPhotino.TestBench
                 IconFile = iconFile,
                 Title = $"My Photino Window {_windowNumber++}",
 
+                //StartUrl = "https://google.com",
                 StartUrl = "wwwroot/main.html",
                 //StartString = "<h1>Hello Photino!</h1>",
 
@@ -111,7 +112,7 @@ namespace HelloPhotino.TestBench
                 //Resizable = false,
                 //TopMost = true,
                 //UseOsDefaultLocation = false,
-                UseOsDefaultSize = false,
+                //UseOsDefaultSize = false,
                 //Zoom = 300,
 
                 //ContextMenuEnabled = false,
@@ -120,8 +121,8 @@ namespace HelloPhotino.TestBench
 
                 //CenterOnInitialize = true,
                 //Size = new Size(800, 600),
-                Height = 600,
-                Width = 800,
+                //Height = 600,
+                //Width = 800,
                 //Location = new Point(50, 50),
                 //Top = 50,
                 //Left = 50,

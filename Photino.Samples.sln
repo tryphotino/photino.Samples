@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.3d", "Photino.HelloPhotino.3d\HelloPhotino.3d.csproj", "{DAFB86BB-4D85-4537-A188-C42390CED35C}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.Vue", "Photino.HelloPhotino.Vue\HelloPhotino.Vue.csproj", "{A13BF6DF-AE71-4FAB-A890-FBE4F769A740}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.TestBench", "Photino.HelloPhotino.TestBench\HelloPhotino.TestBench.csproj", "{3BA4461F-BBF2-4D91-8B7B-B8F394BB66D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.Blazor", "Photino.HelloPhotino.Blazor\HelloPhotino.Blazor.csproj", "{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -139,6 +141,18 @@ Global
 		{3BA4461F-BBF2-4D91-8B7B-B8F394BB66D5}.Release|x64.Build.0 = Release|Any CPU
 		{3BA4461F-BBF2-4D91-8B7B-B8F394BB66D5}.Release|x86.ActiveCfg = Release|Any CPU
 		{3BA4461F-BBF2-4D91-8B7B-B8F394BB66D5}.Release|x86.Build.0 = Release|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Debug|x64.Build.0 = Debug|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Debug|x86.Build.0 = Debug|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Release|x64.ActiveCfg = Release|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Release|x64.Build.0 = Release|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Release|x86.ActiveCfg = Release|Any CPU
+		{68578E36-1A89-4BC1-BBB5-9CD490E34DBF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

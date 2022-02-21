@@ -17,7 +17,7 @@ This repo contains samples for Photino projects using the following Web Framewor
   * React
   
 This repo also contains these samples
-  * Plain vanilla htnml/css/js.
+  * Plain vanilla html/css/js.
   * WebAPI for local communication
   * gRPC for local communication
   * 3D graphics using 3d.js
@@ -26,7 +26,7 @@ This repo also contains these samples
   * Multi-Window (Linux and Mac only for now)
 
 Contribute to this project if you would like to add additional support for frameworks currently not supported by Photino.
-If you would like to start working with Photino and a particular supported framework, you can either start with using one of the sample projects, or check out the [Visual Studio Project Templates](https://tryphotino.kavadocs.com/Photino-VSExtension) or [dotnet CLI / VS Code tempaltes](https://tryphotino.kavadocs.com/Photino-VSCodeTemplates).
+If you would like to start working with Photino and a particular supported framework, you can either start with using one of the sample projects, or check out the [Visual Studio Project Templates](https://docs.tryphotino.io/Photino-VSExtension) or [dotnet CLI / VS Code tempaltes](https://docs.tryphotino.io/Photino-VSCodeTemplates).
 
 # Troubleshooting
 

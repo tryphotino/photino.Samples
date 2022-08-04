@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "HelloPhotino.GRpc": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

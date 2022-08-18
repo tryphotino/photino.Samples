@@ -1,24 +1,46 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿
 using PhotinoNET;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Net.NetworkInformation;
 using System.Text;
 
 namespace HelloPhotino.GRpc
 {
-    //https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld#write-client-code
     class Program
     {
         [STAThread]
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var builder = WebApplication
+                .CreateBuilder(new WebApplicationOptions()
+                {
+                    WebRootPath = "wwwroot"
+                });
+
+            int port = 8080;
+            int portRange = 10;
+            // While port is not available choose different port
+            while (IPGlobalProperties
+                .GetIPGlobalProperties()
+                .GetActiveTcpListeners()
+                .Any(x => x.Port == port))
+            {
+                if (port > port + portRange)
+                {
+                    throw new SystemException($"Couldn't find open port within range {port - portRange} - {port}.");
+                }
+
+                port++;
+            }
+
+            builder.WebHost
+                .UseUrls($"http://localhost:{port}");
+
             var app = builder.Build();
             app.UseStaticFiles();
             app.RunAsync();
-
-            //CreateHostBuilder(args).Build().RunAsync();
 
             // Window title declared here for visibility
             string windowTitle = "Photino StaticFileServer";
@@ -61,16 +83,9 @@ namespace HelloPhotino.GRpc
                     // "window.external.receiveMessage(callback: Function)"
                     window.SendWebMessage(response);
                 })
-                .Load("http://localhost:5000/index.html"); // Can be used with relative path strings or "new URI()" instance to load a website.
+                .Load($"http://localhost:{port}/index.html"); // Can be used with relative path strings or "new URI()" instance to load a website.
 
             window.WaitForClose();
         }
-
-        //public static IHostBuilder CreateHostBuilder(string[] args) =>
-        //    Host.CreateDefaultBuilder(args)
-        //    .ConfigureWebHostDefaults(webBuilder =>
-        //    {
-        //        webBuilder.UseStartup<Startup>();
-        //    });
     }
 }

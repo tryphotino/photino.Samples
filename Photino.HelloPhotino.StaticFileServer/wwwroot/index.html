@@ -1,40 +1,32 @@
-﻿<html>
-
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photino for .NET Demo</title>
+    <link rel="stylesheet" href="assets/main.css" />
+</head>
 <body>
-    <h1>Hello Photino</h1>
-    <p>This is a local file</p>
-    <img src="photino-logo-full.png" width="50%"/>
+    <img src="assets/photino-logo-full.png" alt="Photino" class="logo center" />
 
-    <p>
-        <button onclick="callDotNet()">Call .NET</button>
+    <h1 class="text-center">Hello to Photino for .NET</h1>
+
+    <p class="text-center">
+        This is a static HTML file with CSS and JavaScript, served from a local web root. 
+        Click on the button below to send a message to the backend. 
+        It will respond and send a message back to the UI.
     </p>
+    <button class="primary center" onclick="callDotNet()">Call .NET</button>
 
-    <input type="text" id="NameTxt" value="Photino" />
-    <input type="button" onclick="callGrpc()" value="Call gRPC" />
-
-    <p>
-        <a href="Page2.html">Go to Page 2</a>
-    </p>
-
-    <script src="app://something.js"></script>
+    <script src="app://dynamic.js"></script>
 
     <script>
-        window.external.receiveMessage(function (message) {
-            alert(message);
-        });
-
         function callDotNet() {
-            debugger;
-            fetch("photino-logo-full.png")
-                .then(d => {
-                    alert("worked");
-                })
-                .catch(d => {
-                    alert("failed");
-                });
-            //window.location.href = "photino-logo-full.png";
-            window.external.sendMessage('blah😋');
+            window.external.sendMessage('Hi .NET! 🤖');
         }
+
+        window.external.receiveMessage(message => alert(message));
     </script>
 </body>
 </html>

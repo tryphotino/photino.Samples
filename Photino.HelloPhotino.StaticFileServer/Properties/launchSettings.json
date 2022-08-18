@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "HelloPhotino.GRpc": {
+    "HelloPhotino.StaticFileServer": {
       "commandName": "Project",
       "nativeDebugging": true
     }

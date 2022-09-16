@@ -10,7 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Photino.NET" Version="0.9.0-dev-20220915.1" />
+    <!-- <PackageReference Include="Photino.NET" Version="0.9.0-dev-20220915.1" /> -->
+    <ProjectReference Include="../../photino.NET/Photino.NET/Photino.NET.csproj" />
   </ItemGroup>
 
   <ItemGroup>

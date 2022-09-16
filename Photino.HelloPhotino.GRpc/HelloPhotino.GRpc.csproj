@@ -4,11 +4,16 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <Platforms>AnyCPU</Platforms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\**" />
+    <None Update="wwwroot\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Compile Remove="node_modules\**" />
-    <EmbeddedResource Remove="node_modules\**" />
     <None Remove="node_modules\**" />
   </ItemGroup>
 
@@ -17,14 +22,8 @@
     <PackageReference Include="Grpc.AspNetCore.Web" Version="2.48.0" />
     <PackageReference Include="Grpc.Core" Version="2.46.3" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0-preview.7.22375.6" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Photino.NET" Version="2.1.11" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="wwwroot\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

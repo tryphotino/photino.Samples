@@ -10,11 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- <PackageReference Include="Photino.NET" Version="0.9.0-dev-20220914.3" /> -->
-    <ProjectReference Include="../../photino.NET/Photino.NET/Photino.NET.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Compile Remove="UserInterface\**" />
     <Compile Remove="wwwroot\**" />
     <None Update="wwwroot\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -27,6 +23,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.9" />
+    <!-- <PackageReference Include="Photino.NET" Version="0.9.0-dev-20220914.3" /> -->
+    <ProjectReference Include="../../photino.NET/Photino.NET/Photino.NET.csproj" />
   </ItemGroup>
 
 </Project>

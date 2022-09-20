@@ -1,0 +1,31 @@
+<div id="content">
+  <h1>Latest Photino.NET Commits</h1>
+  <div *ngFor="let branch of branches">
+    <input
+      type="radio"
+      name="branch"
+      [id]="'option-' + branch"
+      [checked]="currentBranch === branch"
+      (click)="selectBranch(branch)"
+    />
+    <label [for]="'option-' + branch">{{ branch }}</label>
+  </div>
+  <p>tryphotino/photino.NET @{{ currentBranch }}</p>
+  <ul id="commits" *ngIf="commits.length > 0">
+    <li *ngFor="let commit of commits">
+      <div class="commit-head">
+        <span class="author">
+          <a [href]="commit.author.html_url" target="_blank">
+            {{ commit.commit.author.name }}
+          </a>
+          &nbsp;–&nbsp;
+          <a [href]="commit.html_url" target="_blank">
+            {{ commit.sha.slice(0, 7) }}
+          </a>
+        </span>
+        <span class="date">{{ formatDate(commit.commit.author.date) }}</span>
+      </div>
+      <p class="message">{{ truncate(commit.commit.message) }}</p>
+    </li>
+  </ul>
+</div>

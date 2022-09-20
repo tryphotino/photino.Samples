@@ -22,7 +22,7 @@ export class AppComponent {
   }
 
   async fetchCommits(branch: string) {
-    const url = `${API_URL}${this.currentBranch}`;
+    const url = `${API_URL}${branch}`;
     return await (await fetch(url)).json();
   }
 

@@ -1,42 +1,139 @@
-import photinoLogo from './photino-logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
-function App() {
-    // Make sure that sendMessage and receiveMessage exist
-    // when the frontend is started without the Photino context.
-    // I.e. using React's `npm run start` command and hot reload.
-    if (typeof(window.external.sendMessage) !== 'function') {
-        window.external.sendMessage = (message) => console.log("Emulating sendMessage.\nMessage sent: " + message);
+const API_URL = `https://api.github.com/repos/tryphotino/photino.NET/commits?per_page=3&sha=`;
+
+class BranchSelector extends React.Component {
+    constructor(props) {
+        super(props);
+
+        if (props.options.length === 0) {
+            throw new Error("No options in BranchSelector.");
+        }
+
+        this.handleRadioChange = this.handleRadioChange.bind(this);
     }
 
-    if (typeof(window.external.receiveMessage) !== 'function') {
-        window.external.receiveMessage = (delegate) => {
-            let message = 'Simulating message from backend.';
-            delegate(message);
+    handleRadioChange(event) {
+        this.props.onChange(event.target.value);
+    }
+
+    createOptions() {
+        return this.props.options.map((option, index) => (
+            <div key={"option-" + index}>
+                <input
+                    type="radio"
+                    id={"option-" + option}
+                    name="branch"
+                    value={option}
+                    checked={this.props.value === option}
+                    onChange={this.handleRadioChange}
+                />
+                <label htmlFor={"option-" + option}>{option}</label>
+            </div>
+        ));
+    }
+
+    render() {
+        return this.createOptions();
+    }
+}
+
+class CommitView extends React.Component {
+    formatDate(v) {
+        return v.replace(/T|Z/g, " ");
+    }
+
+    truncate(v) {
+        const newline = v.indexOf("\n");
+        return newline > 0 ? v.slice(0, newline) : v;
+    }
+
+    createCommitCards() {
+        return this.props.commits.map((commit, index) => (
+            <li key={"commit-" + index}>
+                <div className="commit-head">
+                    <span className="author">
+                        <a href={commit.author.html_url} target="_blank">
+                            {commit.commit.author.name}
+                        </a>
+                        &nbsp;–&nbsp;
+                        <a href={commit.html_url} target="_blank">
+                            {commit.sha.slice(0, 7)}
+                        </a>
+                    </span>
+                    <span className="date">
+                        {this.formatDate(commit.commit.author.date)}
+                    </span>
+                </div>
+                <p className="message">
+                    {this.truncate(commit.commit.message)}
+                </p>
+            </li>
+        ));
+    }
+
+    render() {
+        return <ul id="commits">{this.createCommitCards()}</ul>;
+    }
+}
+
+class GitHubCommitViewer extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.branches = ["master", "debug"];
+        this.state = {
+            branch: this.branches[0],
+            commits: [],
         };
 
-        window.external.receiveMessage((message) => console.log("Emulating receiveMessage.\nMessage received: " + message));
-    } else {
-        window.external.receiveMessage((message) => alert(message));
+        this.handleBranchChange = this.handleBranchChange.bind(this);
     }
 
-    function callDotNet() {
-        window.external.sendMessage('Hi .NET! 🤖');
+    async handleBranchChange(branch) {
+        this.setState({ branch: branch });
+        await this.fetchData(branch);
     }
-    
-    return (
-        <div className="App">
-            <img src={photinoLogo} alt="Photino" className="logo center" />
 
-            <h1 className="text-center">Hello to Photino.React</h1>
-        
-            <p className="text-center">
-                This is a React App served from a local web root. Click on the button below to send a message to the backend. It will respond and send a message back to the UI.
-            </p>
+    async fetchData(branch) {
+        const url = `${API_URL}${branch}`;
+        const commits = await (await fetch(url)).json();
 
-            <button className="primary center" onClick={callDotNet}>Call .NET</button>
-        </div>
-    );
+        this.setState({ commits: commits });
+
+        console.log(branch, this.state.commits);
+    }
+
+    componentWillMount() {
+        console.log("will mount ...");
+        this.fetchData(this.state.branch);
+    }
+
+    componentDidMount() {
+        console.log("did mount ...");
+    }
+
+    render() {
+        return (
+            <div id="content">
+                <h1>Latest Photino.NET Commits</h1>
+                <BranchSelector
+                    options={this.branches}
+                    value={this.state.branch}
+                    onChange={async (branch) =>
+                        await this.handleBranchChange(branch)
+                    }
+                />
+                <p>tryphotino/photino.NET @{this.state.branch}</p>
+                <CommitView commits={this.state.commits} />
+            </div>
+        );
+    }
+}
+
+function App() {
+    return <GitHubCommitViewer />;
 }
 
 export default App;

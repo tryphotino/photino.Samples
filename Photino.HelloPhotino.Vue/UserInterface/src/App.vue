@@ -11,24 +11,27 @@ const API_URL = `https://api.github.com/repos/tryphotino/photino.NET/commits?per
 export default {
   data: () => ({
     branches: ["master", "debug"],
-    currentBranch: "master",
-    commits: null,
+    currentBranch: undefined,
+    commits: [],
   }),
 
   created() {
-    // fetch on init
-    this.fetchData();
+    this.selectBranch(this.branches[0]);
   },
 
   watch: {
     // re-fetch whenever currentBranch changes
-    currentBranch: "fetchData",
+    currentBranch: "selectBranch",
   },
 
   methods: {
-    async fetchData() {
-      const url = `${API_URL}${this.currentBranch}`;
-      this.commits = await (await fetch(url)).json();
+    async selectBranch(branch) {
+      this.currentBranch = branch;
+      this.commits = await this.fetchCommits(branch);
+    },
+    async fetchCommits(branch) {
+      const url = `${API_URL}${branch}`;
+      return await (await fetch(url)).json();
     },
     truncate(v) {
       const newline = v.indexOf("\n");
@@ -47,12 +50,12 @@ export default {
     <div v-for="(branch, index) in branches" :key="index">
       <input
         type="radio"
-        :id="branch"
+        :id="'option-' + branch"
         :value="branch"
         name="branch"
         v-model="currentBranch"
       />
-      <label :for="branch">{{ branch }}</label>
+      <label :for="'option-' + branch">{{ branch }}</label>
     </div>
     <p>tryphotino/photino.NET @{{ currentBranch }}</p>
     <ul id="commits" v-if="commits && commits.length > 0">

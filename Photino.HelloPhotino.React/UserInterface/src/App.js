@@ -11,7 +11,7 @@ class App extends React.Component {
 
         this.branches = ["master", "debug"];
         this.state = {
-            currentBranch: "",
+            currentBranch: undefined,
             commits: [],
         };
 

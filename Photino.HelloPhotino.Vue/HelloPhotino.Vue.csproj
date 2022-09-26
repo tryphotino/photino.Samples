@@ -1,29 +1,77 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
-    <Platforms>AnyCPU</Platforms>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<Platforms>AnyCPU</Platforms>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+   		<!-- Generate embedded file manifest when using the Photino.NET StaticFileServer -->
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<!--
+		Embed the the wwwroot files from the Resource folder into the executable
+		instead of accessing wwwroot files from a folder on the filesystem.
+		This will change the output directory of the Vue build output from
+		the `./wwwroot` folder to `./Resources/wwwroot`.
+		-->
+		<EmbedWwwRoot>false</EmbedWwwRoot>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="UserInterface\**" />
-    <Compile Remove="wwwroot\**" />
-    <None Update="wwwroot\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.9" Condition=" '$(GenerateEmbeddedFilesManifest)' == 'true' " />
+		<PackageReference Include="Photino.NET" Version="2.2.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.9" />
-    <PackageReference Include="Photino.NET" Version="2.2.2" />
-  </ItemGroup>
+	<PropertyGroup>
+		<UiRoot>UserInterface\</UiRoot>
+    <UiBuildOutput>dist\</UiBuildOutput>
+		<WwwRoot Condition=" '$(EmbedWwwRoot)' != 'true' ">wwwroot\</WwwRoot>
+		<WwwRoot Condition=" '$(EmbedWwwRoot)' == 'true' ">Resources\wwwroot\</WwwRoot>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Don't publish the UI source files, but do show them in the project files list -->
+		<Content Remove="$(UiRoot)**" />
+		<None Remove="$(UiRoot)**" />
+		<None Include="$(UiRoot)**" Exclude="$(UiRoot)node_modules\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Resources\**" Condition=" '$(GenerateEmbeddedFilesManifest)' == 'true' " />
+	</ItemGroup>
+
+	<Target Name="EnsureNodeEnv" BeforeTargets="BuildUserInterface" Condition=" !Exists('$(UiRoot)node_modules') ">
+		<!-- Ensure Node.js is installed -->
+		<Exec Command="node --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+	</Target>
+
+	<Target Name="BuildUserInterface" BeforeTargets="BeforeBuild">
+		<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+		<Exec WorkingDirectory="$(UiRoot)" Command="npm install" />
+		<Exec WorkingDirectory="$(UiRoot)" Command="npm run build" />
+		
+		<ItemGroup>
+			<UiBuildOutputFiles Include="$(UiRoot)$(UiBuildOutput)**\*.*" />
+		</ItemGroup>
+		
+		<Copy
+			SourceFiles="@(UiBuildOutputFiles)"
+			DestinationFiles="@(UiBuildOutputFiles->'$(WwwRoot)%(RecursiveDir)%(Filename)%(Extension)')" />
+
+		<MakeDir
+      Directories="$(TargetDir)\$(WwwRoot)"
+      Condition=" '$(EmbedWwwRoot)' != 'true' And !Exists('$(TargetDir\$(WwwRoot)') " />
+
+		<Copy
+			SourceFiles="@(UiBuildOutputFiles)"
+			DestinationFiles="@(UiBuildOutputFiles->'$(TargetDir)\$(WwwRoot)%(RecursiveDir)%(Filename)%(Extension)')"
+      Condition=" '$(EmbedWwwRoot)' != 'true' " />
+
+		<RemoveDir Directories="$(UiRoot)$(UiBuildOutput)" />
+	</Target>
 
 </Project>

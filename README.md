@@ -12,7 +12,6 @@ Photino is the lightest cross-platform framework. Compared to Electron, a Photin
 
 This repo contains samples for Photino projects using the following Web Frameworks:
 
-* MS Blazor
 * Vue.JS
 * Angular
 * React
@@ -24,8 +23,9 @@ This repo also contains these samples
 * gRPC for local communication
 * 3D graphics using 3d.js
 * 3D graphics with 3d.js and React
-* Advanced .NET with WebAPI, OS calls, PowerShell calls
-* Multi-Window (Linux and Mac only for now)
+* A TestBench for .NET with WebAPI, OS calls, PowerShell calls, etc.
+* Multi-Window
+* Static File Server (use to prevent CORS issues)
 
 Contribute to this project if you would like to add additional support for frameworks currently not supported by Photino.
 If you would like to start working with Photino and a particular supported framework, you can either start with using one of the sample projects, or check out the [Visual Studio Project Templates](https://docs.tryphotino.io/Photino-VSExtension) or [dotnet CLI / VS Code tempaltes](https://docs.tryphotino.io/Photino-VSCodeTemplates).

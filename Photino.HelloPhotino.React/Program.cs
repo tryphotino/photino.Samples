@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using PhotinoNET;
+using PhotinoNET.Server;
 
 namespace Photino.HelloPhotino.React;
 

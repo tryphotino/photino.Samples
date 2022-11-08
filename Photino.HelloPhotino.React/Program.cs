@@ -6,12 +6,19 @@ namespace Photino.HelloPhotino.React;
 
 class Program
 {
+    public static bool IsDebugMode = true;
+
     [STAThread]
     static void Main(string[] args)
     {
+#if RELEASE
+        IsDebugMode = false;
+#endif
         PhotinoServer
             .CreateStaticFileServer(args, out string baseUrl)
             .RunAsync();
+
+        string appUrl = IsDebugMode ? "http://localhost:3000" : $"{baseUrl}/index.html";
 
         // Window title declared here for visibility
         string windowTitle = "Photino.React Demo App";
@@ -53,7 +60,7 @@ class Program
                 // "window.external.receiveMessage(callback: Function)"
                 window.SendWebMessage(response);
             })
-            .Load($"{baseUrl}/index.html"); // Can be used with relative path strings or "new URI()" instance to load a website.
+            .Load(appUrl); // Can be used with relative path strings or "new URI()" instance to load a website.
 
         window.WaitForClose(); // Starts the application event loop
     }

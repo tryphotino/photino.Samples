@@ -28,7 +28,7 @@ This repo also contains these samples
 * Static File Server (use to prevent CORS issues)
 
 Contribute to this project if you would like to add additional support for frameworks currently not supported by Photino.
-If you would like to start working with Photino and a particular supported framework, you can either start with using one of the sample projects, or check out the [Visual Studio Project Templates](https://docs.tryphotino.io/Photino-VSExtension) or [dotnet CLI / VS Code tempaltes](https://docs.tryphotino.io/Photino-VSCodeTemplates).
+If you would like to start working with Photino and a particular supported framework, you can either start with using one of the sample projects, or check out the [Visual Studio Project Templates](https://docs.tryphotino.io/Photino-VSExtension) or [dotnet CLI / VS Code templates](https://docs.tryphotino.io/Photino-VSCodeTemplates).
 
 # Troubleshooting
 

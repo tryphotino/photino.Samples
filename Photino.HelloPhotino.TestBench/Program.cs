@@ -1,7 +1,5 @@
 ﻿using PhotinoNET;
-using System;
 using System.Drawing;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -44,7 +42,7 @@ namespace HelloPhotino.TestBench
                 .Load("wwwroot/main.html")
                 //.LoadRawString("<h1>Hello Photino!</h1>")
 
-                //.SetChromeless(true)
+                .SetChromeless(true)
                 //.SetFullScreen(true)
                 //.SetMaximized(true)
                 //.SetMinimized(true)
@@ -104,7 +102,7 @@ namespace HelloPhotino.TestBench
                 StartUrl = "wwwroot/main.html",
                 //StartString = "<h1>Hello Photino!</h1>",
 
-                //Centered = true,
+                Centered = true,
                 //Chromeless = true,
                 //FullScreen = true,
                 //Maximized = true,
@@ -112,7 +110,7 @@ namespace HelloPhotino.TestBench
                 //Resizable = false,
                 //TopMost = true,
                 //UseOsDefaultLocation = false,
-                //UseOsDefaultSize = false,
+                UseOsDefaultSize = false,
                 //Zoom = 300,
 
                 //ContextMenuEnabled = false,
@@ -121,8 +119,8 @@ namespace HelloPhotino.TestBench
 
                 //CenterOnInitialize = true,
                 //Size = new Size(800, 600),
-                //Height = 600,
-                //Width = 800,
+                Height = 600,
+                Width = 800,
                 //Location = new Point(50, 50),
                 //Top = 50,
                 //Left = 50,
@@ -167,7 +165,7 @@ namespace HelloPhotino.TestBench
 
             + $"'{currentWindow.Title}';" + "\n"
 
-            + $"        lineage.innerHTML = `PhotinoWindow Id: {currentWindow.Id} <br>`;" + "\n"; 
+            + $"        lineage.innerHTML = `PhotinoWindow Id: {currentWindow.Id} <br>`;" + "\n";
 
             //show lineage of this window
             var p = currentWindow.Parent;
@@ -244,6 +242,10 @@ namespace HelloPhotino.TestBench
             {
                 currentWindow.Close();
             }
+            else if (string.Compare(message, "clearbrowserautofill", true) == 0)
+            {
+                currentWindow.ClearBrowserAutoFill();
+            }
             else if (string.Compare(message, "minimize", true) == 0)
             {
                 currentWindow.SetMinimized(!currentWindow.Minimized);
@@ -290,23 +292,23 @@ namespace HelloPhotino.TestBench
             {
                 currentWindow.SetHeight(currentWindow.Height - 5);
                 currentWindow.SetWidth(currentWindow.Width - 5);
-            }              
+            }
             else if (string.Compare(message, "settitle", true) == 0)
             {
                 currentWindow.SetTitle(currentWindow.Title + "*");
-            } 
+            }
             else if (string.Compare(message, "settopmost", true) == 0)
             {
                 currentWindow.SetTopMost(!currentWindow.Topmost);
-            } 
+            }
             else if (string.Compare(message, "setfullscreen", true) == 0)
             {
                 currentWindow.SetFullScreen(!currentWindow.FullScreen);
-            } 
+            }
             else if (string.Compare(message, "showproperties", true) == 0)
             {
                 var properties = GetPropertiesDisplay(currentWindow);
-                currentWindow.OpenAlertWindow("Settings", properties);
+                currentWindow.ShowMessage("Settings", properties);
             }
             else if (string.Compare(message, "sendWebMessage", true) == 0)
             {
@@ -315,6 +317,40 @@ namespace HelloPhotino.TestBench
             else if (string.Compare(message, "toastNotification", true) == 0)
             {
                 currentWindow.SendNotification("Toast Title", " Taoast message!");
+            }
+            else if (string.Compare(message, "showOpenFile", true) == 0)
+            {
+                var results = currentWindow.ShowOpenFile(filters: new[]{
+                    ("All files", new [] {"*.*"}),
+                    ("Text files", new [] {"*.txt"}),
+                    ("Image files", new [] {"*.png", "*.jpg", "*.jpeg"}),
+                    ("PDF files", new [] {"*.pdf"}),
+                    ("CSharp files", new [] { "*.cs" })
+                });
+                if (results.Length > 0)
+                    currentWindow.ShowMessage("Open File", string.Join(Environment.NewLine, results));
+                else
+                    currentWindow.ShowMessage("Open File", "No file chosen", icon: PhotinoDialogIcon.Error);
+            }
+            else if (string.Compare(message, "showOpenFolder", true) == 0)
+            {
+                var results = currentWindow.ShowOpenFolder(multiSelect: true);
+                if (results.Length > 0)
+                    currentWindow.ShowMessage("Open Folder", string.Join(Environment.NewLine, results));
+                else
+                    currentWindow.ShowMessage("Open Folder", "No folder chosen", icon: PhotinoDialogIcon.Error);
+            }
+            else if (string.Compare(message, "showSaveFile", true) == 0)
+            {
+                var result = currentWindow.ShowSaveFile();
+                if (result != null)
+                    currentWindow.ShowMessage("Save File", result);
+                else
+                    currentWindow.ShowMessage("Save File", "File not saved", icon: PhotinoDialogIcon.Error);
+            }
+            else if (string.Compare(message, "showMessage", true) == 0)
+            {
+                var result = currentWindow.ShowMessage("Title", "Testing...");
             }
             else
                 throw new Exception($"Unknown message '{message}'");
@@ -340,12 +376,36 @@ namespace HelloPhotino.TestBench
             Log(sender, $"WindowSizeChanged Callback Fired.  Height: {size.Height}  Width: {size.Width}");
         }
 
+        private static void WindowMaximized(object sender, EventArgs e)
+        {
+            Log(sender, $"{nameof(WindowMaximized)} Callback Fired.");
+        }
+
+        private static void WindowRestored(object sender, EventArgs e)
+        {
+            Log(sender, $"{nameof(WindowRestored)} Callback Fired.");
+        }
+
+        private static void WindowMinimized(object sender, EventArgs e)
+        {
+            Log(sender, $"{nameof(WindowMinimized)} Callback Fired.");
+        }
+
         private static bool WindowIsClosing(object sender, EventArgs e)
         {
             Log(sender, "WindowIsClosing Callback Fired.");
             return false;   //return true to block closing of the window
         }
 
+        private static void WindowFocusIn(object sender, EventArgs e)
+        {
+            Log(sender, "WindowFocusIn Callback Fired.");
+        }
+
+        private static void WindowFocusOut(object sender, EventArgs e)
+        {
+            Log(sender, "WindowFocusOut Callback Fired.");
+        }
 
 
 
@@ -369,7 +429,7 @@ namespace HelloPhotino.TestBench
             sb.AppendLine($"Topmost: {currentWindow.Topmost}");
             sb.AppendLine($"Maximized: {currentWindow.Maximized}");
             sb.AppendLine($"Minimized: {currentWindow.Minimized}");
-            
+
             return sb.ToString();
         }
 

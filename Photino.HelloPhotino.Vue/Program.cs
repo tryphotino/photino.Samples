@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
 using PhotinoNET;
 using PhotinoNET.Server;
 
@@ -53,6 +54,8 @@ class Program
                 // "window.external.receiveMessage(callback: Function)"
                 window.SendWebMessage(response);
             })
+            .SetUseOsDefaultSize(false)
+            .SetSize(new Size(2048, 1024))
             .Load($"{baseUrl}/index.html"); // Can be used with relative path strings or "new URI()" instance to load a website.
 
         window.WaitForClose(); // Starts the application event loop

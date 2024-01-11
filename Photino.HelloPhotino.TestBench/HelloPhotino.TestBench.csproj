@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Platforms>AnyCPU</Platforms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
@@ -10,13 +10,10 @@
 
   <ItemGroup>
     <Compile Remove="wwwroot\**" />
+    <PackageReference Include="Photino.NET" Version="2.6.0" />
     <None Update="wwwroot\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Photino.NET" Version="2.4.0" />
   </ItemGroup>
 
 </Project>

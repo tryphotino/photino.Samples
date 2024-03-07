@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+
+		<!-- Photino Configs -->
+		<UiRoot>UserInterface\</UiRoot>
+		<DefaultItemExcludes>$(DefaultItemExcludes);$(UiRoot)node_modules\**</DefaultItemExcludes>
+		<GenerateEmbeddedFilesManifest Condition="'$(Configuration)' == 'Release'">true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<!-- Don't publish the SPA source files, but do show them in the project files list -->
+		<Content Remove="$(UiRoot)**" />
+		<None Remove="$(UiRoot)**" />
+		<None Include="$(UiRoot)**" Exclude="$(UiRoot)node_modules\**" />
+	</ItemGroup>
+
+	<!-- For now I need to use the projects, when the nugets will be published we can swap  -->
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Photino.NET.Server\Photino.NET.Server\Photino.NET.Server.csproj" />
+	  <ProjectReference Include="..\..\Photino.NET.IPC\Photino.NET.IPC\Photino.NET.IPC.csproj" />
+	</ItemGroup>
+
+	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(UiRoot)node_modules') ">
+		<!-- Ensure Node.js is installed -->
+		<Exec Command="node --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+		<Exec WorkingDirectory="$(UiRoot)" Command="npm install" />
+	</Target>
+
+	<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+		<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+		<Exec WorkingDirectory="$(UiRoot)" Command="npm install" />
+		<Exec WorkingDirectory="$(UiRoot)" Command="npm run build" />
+
+		<!-- Include the newly-built files in the publish output -->
+		<ItemGroup>
+			<DistFiles Include="$(UiRoot)dist\**" />
+			<EmbeddedResource Include="@(DistFiles->'%(FullPath)')" LogicalName="wwwroot\%(RecursiveDir)%(FileName)%(Extension)" />
+		</ItemGroup>
+	</Target>
+
+</Project>

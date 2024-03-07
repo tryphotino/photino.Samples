@@ -23,13 +23,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.StaticFileServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.NET", "Photino.HelloPhotino.NET\HelloPhotino.NET.csproj", "{0DC25BE6-0CC3-4C56-B3B5-B1F457F505E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Photino.NET", "..\Photino.NET\Photino.NET\Photino.NET.csproj", "{B33316C5-09D1-4136-A1D9-A094697074C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.Vite", "Photino.HelloPhotino.Vite\HelloPhotino.Vite.csproj", "{B48CA10A-D167-4F48-9A2D-AF01F8C92237}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{ADCF9993-B7AE-4269-85A2-F06DFD49D70E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -72,5 +73,16 @@ Global
 		{0DC25BE6-0CC3-4C56-B3B5-B1F457F505E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DC25BE6-0CC3-4C56-B3B5-B1F457F505E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DC25BE6-0CC3-4C56-B3B5-B1F457F505E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B33316C5-09D1-4136-A1D9-A094697074C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B33316C5-09D1-4136-A1D9-A094697074C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B33316C5-09D1-4136-A1D9-A094697074C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B33316C5-09D1-4136-A1D9-A094697074C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B48CA10A-D167-4F48-9A2D-AF01F8C92237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B48CA10A-D167-4F48-9A2D-AF01F8C92237}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B48CA10A-D167-4F48-9A2D-AF01F8C92237}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B48CA10A-D167-4F48-9A2D-AF01F8C92237}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

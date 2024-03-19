@@ -1,0 +1,60 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <!--
+      General properties
+    -->
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <!--
+      Publish properties
+    -->
+    <!-- Set the application icon -->
+    <ApplicationIcon>../publish/templates/win/app.ico</ApplicationIcon>
+
+    <!-- Version will be set to a debug version if not overridden by CLI parameter. -->
+    <Version>0.0.0-$([System.DateTime]::Now.ToString(yyyyMMddHms))</Version>
+
+    <!-- Bundle .NET runtime -->
+    <SelfContained>true</SelfContained>
+    
+    <!-- Bundle all dependencies into a single executable -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+    
+    <!-- Enable compression for the single executable -->
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+
+    <!--
+    Disable default content for better control of which files are bundled.
+    See https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file#default-content-in-single-file-bundles
+    -->
+    <EnableDefaultContent>false</EnableDefaultContent>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
+
+    <!-- Include debug symbols into the executable -->
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Photino.NET" Version="2.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot/**" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <Target AfterTargets="Publish" Name="MovePublishedSingleFile">
+    <!-- Move single file application (Windows, macOS, Linux) to {{ProjectDir}}/publish/build path after build completed -->
+    <ItemGroup>
+      <PublishFile Include="$(PublishDir)\*" />
+    </ItemGroup>
+    
+    <Move
+      SourceFiles="@(PublishFile)"
+      DestinationFolder="$(ProjectDir)\publish\build\$(AssemblyName).$(Version).$(RuntimeIdentifier)" />
+  </Target>
+  
+</Project>

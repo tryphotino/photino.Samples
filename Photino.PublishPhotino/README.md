@@ -169,6 +169,17 @@ This is quite far from the single file executable we want to achieve. We can cha
 
 > Listing 3: Adding publish properties to the `*.csproj` file
 
+Depending on your application (e. g. Blazor applications) you may need to change the following properties to `false` in the `*.csproj` file or include additional content individually.
+
+```xml
+<!--
+Disable default content for better control of which files are bundled.
+See https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file#default-content-in-single-file-bundles
+-->
+<EnableDefaultContent>false</EnableDefaultContent>
+<EnableDefaultContentItems>false</EnableDefaultContentItems>
+```
+
 Much better, we're now left with a single, compressed executable as seen in Listing 4.
 
 ```

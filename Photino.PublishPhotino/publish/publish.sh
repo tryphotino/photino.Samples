@@ -22,6 +22,10 @@ PUBLISH_TEMPLATES="$PUBLISH_ROOT/templates"
 PUBLISH_BUILD="$PUBLISH_ROOT/build"
 PUBLISH_OUTPUT="$PUBLISH_ROOT/output"
 
+# Ensure output directory exists (are ignored via .gitignore)
+mkdir -p $PUBLISH_BUILD
+mkdir -p $PUBLISH_OUTPUT
+
 # Function to generate formatted headers
 function header() {
     echo -e "\033[;32m"

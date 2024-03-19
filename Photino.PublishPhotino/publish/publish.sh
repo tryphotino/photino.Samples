@@ -270,11 +270,11 @@ fi
 for PLATFORM in $PLATFORMS; do
     # Clearing previous builds
     header "Clearing previous builds..."
-    dotnet clean 1> /dev/null || abort
-    rm -rf ./bin
+    rm -rf ./bin ./obj
+    dotnet clean || abort
 
     header "Publishing for $PLATFORM..."
-    dotnet publish -r $PLATFORM -c $PUBLISH_CONFIG -p:Version=$APP_VERSION 1> /dev/null || abort
+    dotnet publish -r $PLATFORM -c $PUBLISH_CONFIG -p:Version=$APP_VERSION || abort
 
     # Create zip files for Windows
     if [[ $PLATFORM == win-* ]]; then

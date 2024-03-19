@@ -5,6 +5,6 @@ Maintainer: APP_MAINTAINER
 Package: APP_NAME
 Version: APP_VERSION
 Architecture: APP_ARCH
-Depends: libc6 (>= 2.31), gir1.2-gtk-3.0 (>= 3.24), libwebkit2gtk-4.1-37 (>= 2.42)
+Depends: libc6 (>= 2.31), gir1.2-gtk-3.0 (>= 3.24), libwebkit2gtk-4.1-0 (>= 2.42)
 Description: APP_DESC_SHORT
   APP_DESC_LONG

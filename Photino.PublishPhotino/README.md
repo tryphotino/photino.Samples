@@ -181,7 +181,7 @@ For more information on how to publish single file executables reference the [Si
 
 ## Deploying for Windows
 
-Publishing for Windows is as simple as running `dotnet publish -r win-x64` with the runtime parameter set to the "Runtime Identifier" (rid) set to `win-x64`. You can use `win-x86` and `win-arm64` to target these specific platforms. This will create a single file executable for Windows as seen in Listing 5.
+Publishing for Windows is as simple as running `dotnet publish -r win-x64` with the runtime parameter set to the "Runtime Identifier" (rid) set to `win-x64`. You can use `win-x64` and `win-arm64` to target these specific platforms. This will create a single file executable for Windows as seen in Listing 5.
 
 ```
 bin
@@ -197,7 +197,7 @@ A user can now run the `PublishPhotino.exe` file on their Windows machine withou
 
 ## Deploying for macOS
 
-To deploy a Photino application for macOS you will run `dotnet publish -r osx-x64` and also package the application into an `.app` bundle. This bundle is a directory that contains the application executable, the required libraries, and metadata about the application.
+To deploy a Photino application for macOS you will run `dotnet publish -r osx-x64` (or `osx-arm64`) and also package the application into an `.app` bundle. This bundle is a directory that contains the application executable, the required libraries, and metadata about the application.
 
 The minimal structure for a macOS application bundle is shown in Listing 6. The `PublishPhotino` executable is placed in the `macOS` directory, and the `Info.plist` file contains metadata about the application. The `BundleIcon.png` file is the icon that will be displayed in the Finder.
 
@@ -261,7 +261,7 @@ For distribution on the App Store you will need to sign your application with a 
 
 ## Deploying for Linux
 
-Using the file that is created when running `dotnet publish -r linux-x64` directly **can work** on the more common Linux distributions. However it is recommended to package your application using an applicable package manager for the target distribution.
+Using the file that is created when running `dotnet publish -r linux-x64` (or `linux-arm64`) directly **can work** on the more common Linux distributions. However it is recommended to package your application using an applicable package manager for the target distribution.
 
 ### Packaging for Debian-based distributions
 
@@ -305,7 +305,7 @@ Maintainer: your name <yourname@example.com>
 Package: PublishPhotino
 Version: 1.0.0
 Architecture: amd64
-Depends: libc6 (>= 2.31-13), gir1.2-gtk-3.0 (>= 3.24.24-4), libwebkit2gtk-4.0-37 (>= 2.42.4-0)
+Depends: libc6 (>= 2.31), gir1.2-gtk-3.0 (>= 3.24), libwebkit2gtk-4.1-37 (>= 2.42)
 Description: PublishPhotino
   A simple Photino application.
 ```

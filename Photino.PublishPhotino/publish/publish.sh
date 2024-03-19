@@ -93,20 +93,21 @@ create_deb_package() {
 
         # Copy debian folder into release folder
         cp -r $PUBLISH_TEMPLATES/linux/deb ./debian
+
         # Copy published binaries into debian folder
         mkdir -p ./debian/bin
-        mv $APP_NAME ./debian/bin || abort
+        cp $APP_NAME ./debian/bin || abort
 
         # Replace version placeholder in control file, overwrite existing file
         cp ./debian/DEBIAN/control ./debian/DEBIAN/control-template
 
         cat ./debian/DEBIAN/control-template \
-            | sed "s/APP_NAME/$APP_NAME/"\
-            | sed "s/APP_MAINTAINER/$APP_MAINTAINER/"\
-            | sed "s/APP_VERSION/$APP_VERSION/"\
-            | sed "s/APP_DESC_SHORT/$APP_DESC_SHORT/"\
-            | sed "s/APP_DESC_LONG/$APP_DESC_LONG/"\
-            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//')/" > ./debian/DEBIAN/control
+            | sed "s/APP_NAME/$APP_NAME/g"\
+            | sed "s/APP_MAINTAINER/$APP_MAINTAINER/g"\
+            | sed "s/APP_VERSION/$APP_VERSION/g"\
+            | sed "s/APP_DESC_SHORT/$APP_DESC_SHORT/g"\
+            | sed "s/APP_DESC_LONG/$APP_DESC_LONG/g"\
+            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > ./debian/DEBIAN/control
         
         rm ./debian/DEBIAN/control-template
 
@@ -131,10 +132,10 @@ create_deb_package() {
 
         # Replace placeholders in desktop config, overwrite existing file
         cat "./debian/usr/share/applications/APP_URN.desktop"\
-            | sed "s/APP_NAME/$APP_NAME/"\
-            | sed "s/APP_URN/$APP_URN/"\
-            | sed "s/APP_DESC_SHORT/$APP_DESC_SHORT/"\
-            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//')/" > "./debian/usr/share/applications/$APP_URN.desktop"
+            | sed "s/APP_NAME/$APP_NAME/g"\
+            | sed "s/APP_URN/$APP_URN/g"\
+            | sed "s/APP_DESC_SHORT/$APP_DESC_SHORT/g"\
+            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > "./debian/usr/share/applications/$APP_URN.desktop"
         
         rm "./debian/usr/share/applications/APP_URN.desktop"
 
@@ -165,20 +166,18 @@ create_flatpack_package() {
 
         # Copy published binaries into debian folder
         mkdir -p ./flatpak/bin
-        mv $APP_NAME ./flatpak/bin || abort
+        cp $APP_NAME ./flatpak/bin || abort
 
         # Replace version placeholder in manifest file, overwrite existing file
-        cp ./flatpak/$APP_URN.yml ./flatpak/$APP_URN.yml-template
+        cat ./flatpak/APP_URN.yml\
+            | sed "s/APP_NAME/$APP_NAME/g"\
+            | sed "s/APP_URN/$APP_URN/g"\
+            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > ./flatpak/$APP_URN.yml
 
-        cat ./flatpak/$APP_URN.yml-template\
-            | sed "s/APP_NAME/$APP_NAME/"\
-            | sed "s/APP_URN/$APP_URN/"\
-            | sed "s/APP_ARCH/$1/" > ./flatpak/$APP_URN.yml
-
-        rm ./flatpak/$APP_URN.yml-template
+        rm ./flatpak/APP_URN.yml
 
         # Move doc folder to correct location
-        mv "./debian/usr/share/doc/APP_NAME/" "./debian/usr/share/doc/$APP_NAME_LC/"
+        mv "./flatpak/app/share/doc/APP_URN/" "./flatpak/app/share/doc/$APP_URN/"
 
         # Write commit messages since previous tag into changelog file
         # Check if current directory is a git repository
@@ -190,26 +189,26 @@ create_flatpack_package() {
             # Get previous to last git tag
             prev_tag=$(git tag -l 2> /dev/null | sed 's/v//' | sort -uVr | sed -n 2p)
             $(git log --pretty=format:"%ad %an%n%s%n" --date=short --no-merges v$prev_tag..HEAD 2> /dev/null) > ./changelog
+
+            gzip --best -n ./changelog
+            mv changelog.gz ./flatpak/app/share/doc/$APP_URN/
+            rm -f ./changelog
         fi
 
-        gzip --best -n ./changelog
-        mv changelog.gz ./flatpak/app/share/doc/$APP_NAME_LC/
-        rm -f ./changelog
-
         # Replace placeholders in desktop config, overwrite existing file
-        cat ./debian/usr/share/applications/APP_URN.desktop \
-            | sed "s/APP_NAME/$APP_NAME/"\
-            | sed "s/APP_URN/$APP_URN/"\
-            | sed "s/APP_DESC_SHORT/$APP_DESC_SHORT/"\
-            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//')/" > ./debian/usr/share/applications/$APP_URN.desktop
+        cat ./flatpak/app/share/applications/APP_URN.desktop \
+            | sed "s/APP_NAME/$APP_NAME/g"\
+            | sed "s/APP_URN/$APP_URN/g"\
+            | sed "s/APP_DESC_SHORT/$APP_DESC_SHORT/g"\
+            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > ./flatpak/app/share/applications/$APP_URN.desktop
         
-        rm ./debian/usr/share/applications/APP_URN.desktop
+        rm ./flatpak/app/share/applications/APP_URN.desktop
 
         # Move icon to correct location
-        mv "./debian/usr/share/icons/hicolor/512x512/apps/APP_URN.png" "./debian/usr/share/icons/hicolor/512x512/apps/$APP_URN.png"
+        mv "./flatpak/app/share/icons/hicolor/512x512/apps/APP_URN.png" "./flatpak/app/share/icons/hicolor/512x512/apps/$APP_URN.png"
 
         # Create Flatpak package, stop publishing on error
-        flatpak-builder --repo=./flatpak/.repo --force-clean ./flatpak/.build ./flatpak/$APP_URN.yml 2> /dev/null || abort
+        flatpak-builder --repo=./flatpak/.repo --force-clean ./flatpak/.build ./flatpak/$APP_URN.yml || abort
         flatpak build-bundle ./flatpak/.repo $PUBLISH_OUTPUT/$APP_NAME.$APP_VERSION.$1.flatpak $APP_URN || abort
 
         rm -rf ./flatpak ./flatpak-builder
@@ -274,7 +273,7 @@ fi
 for PLATFORM in $PLATFORMS; do
     # Clearing previous builds
     header "Clearing previous builds..."
-    rm -rf ./bin ./obj
+    rm -rf ./bin ./obj ./publish/build/*
     dotnet clean || abort
 
     header "Publishing for $PLATFORM..."

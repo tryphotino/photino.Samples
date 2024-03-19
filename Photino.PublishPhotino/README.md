@@ -118,10 +118,13 @@ This is quite far from the single file executable we want to achieve. We can cha
     <!--
       Publish properties
     -->
+    <!-- Set the application icon -->
+    <ApplicationIcon>./publish/templates/win/app.ico</ApplicationIcon>
+
     <!-- Version will be set to a debug version if not overridden by CLI parameter. -->
     <Version>0.0.0-$([System.DateTime]::Now.ToString(yyyyMMddHms))</Version>
 
-    <!-- Bundle the application with the specified .NET runtime -->
+    <!-- Bundle .NET runtime -->
     <SelfContained>true</SelfContained>
 
     <!-- Bundle all dependencies into a single executable -->
@@ -133,8 +136,7 @@ This is quite far from the single file executable we want to achieve. We can cha
 
     <!--
     Disable default content for better control of which files are bundled.
-    Use the <Content> item to include files in the bundle, or enable these properties to include all files.
-    @See: https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file#default-content-in-single-file-bundles
+    See https://docs.microsoft.com/en-us/dotnet/core/deploying/single-file#default-content-in-single-file-bundles
     -->
     <EnableDefaultContent>false</EnableDefaultContent>
     <EnableDefaultContentItems>false</EnableDefaultContentItems>
@@ -150,6 +152,17 @@ This is quite far from the single file executable we want to achieve. We can cha
   <ItemGroup>
     <Content Include="wwwroot/**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
+  <Target AfterTargets="Publish" Name="MovePublishedSingleFile">
+    <!-- Move single file application (Windows, macOS, Linux) to {{ProjectDir}}/publish/build path after build completed -->
+    <ItemGroup>
+      <PublishFile Include="$(PublishDir)\*" />
+    </ItemGroup>
+
+    <Move
+      SourceFiles="@(PublishFile)"
+      DestinationFolder="$(ProjectDir)\publish\build\$(AssemblyName).$(Version).$(RuntimeIdentifier)" />
+  </Target>
 
 </Project>
 ```

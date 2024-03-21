@@ -46,15 +46,15 @@
     <Content Include="wwwroot/**" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
-  <Target AfterTargets="Publish" Name="MovePublishedSingleFile">
+  <Target AfterTargets="Publish" Name="CopyPublishedSingleFile">
     <!-- Move single file application (Windows, macOS, Linux) to {{ProjectDir}}/publish/build path after build completed -->
     <ItemGroup>
-      <PublishFile Include="$(PublishDir)\*" />
+      <PublishFiles Include="$(PublishDir)\**\*.*" />
     </ItemGroup>
     
-    <Move
-      SourceFiles="@(PublishFile)"
-      DestinationFolder="$(ProjectDir)\publish\build\$(AssemblyName).$(Version).$(RuntimeIdentifier)" />
+    <Copy
+      SourceFiles="@(PublishFiles)"
+      DestinationFolder="$(ProjectDir)\..\publish\build\$(AssemblyName).$(Version).$(RuntimeIdentifier)\%(RecursiveDir)" />
   </Target>
   
 </Project>

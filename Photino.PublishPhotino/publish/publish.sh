@@ -11,8 +11,10 @@ APP_MAINTAINER="TryPhotino <info@tryphotino.io>"
 APP_DESC_SHORT="PublishPhotino Demo"
 APP_DESC_LONG="PublishPhotino is a simple, cross-platform demo to show packaging options for Photino applications."
 
+PROJECT_NAME="$APP_NAME"
 PROJECT_ROOT=$(pwd)/..
-APPLICATION_DIR="$PROJECT_ROOT"
+
+APPLICATION_DIR="$PROJECT_ROOT/$PROJECT_NAME"
 
 PUBLISH_CONFIG="Release"
 PUBLISH_PLATFORMS="win-x64 win-arm64 osx-x64 osx-arm64 linux-x64 linux-arm64"
@@ -37,6 +39,11 @@ function header() {
 function abort() {
     echo -en "\033[0;31m"
     echo "❌ Publishing aborted!"
+    echo -en "\033[0m"
+
+    rm -rf $PUBLISH_BUILD/*
+    rm -rf $PUBLISH_OUTPUT/*
+
     exit 1
 }
 
@@ -44,9 +51,9 @@ function abort() {
 create_win_package() {
     header "Creating package for Windows ($1) ..."
 
-    cd $PUBLISH_BUILD/$APP_NAME.$APP_VERSION.$1
+    cd $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1
 
-    mv $APP_NAME.exe $APP_NAME.$APP_VERSION.$1.exe
+    mv $PROJECT_NAME.exe $APP_NAME.$APP_VERSION.$1.exe
 
     zip -r $APP_NAME.$APP_VERSION.$1.zip $APP_NAME.$APP_VERSION.$1.exe
 
@@ -59,12 +66,12 @@ create_win_package() {
 create_mac_app_bundle() {
     header "Creating app bundle for macOS ($1) ..."
 
-    cd $PUBLISH_BUILD/$APP_NAME.$APP_VERSION.$1
+    cd $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1
     
     cp -r $PUBLISH_TEMPLATES/osx/APP_NAME.app "./$APP_NAME.app"
     
     mkdir -p $APP_NAME.app/Contents/MacOS/
-    mv $APP_NAME $APP_NAME.app/Contents/MacOS/
+    mv $PROJECT_NAME $APP_NAME.app/Contents/MacOS/$APP_NAME
 
     # Replace version placeholder in Info.plist file, overwrite existing file
     cp $APP_NAME.app/Contents/Info.plist $APP_NAME.app/Contents/Info.plist-template
@@ -77,9 +84,23 @@ create_mac_app_bundle() {
 
     rm $APP_NAME.app/Contents/Info.plist-template
 
-    # Create DMG file
-    hdiutil create -volname $APP_NAME -srcfolder $APP_NAME.app -ov -format UDZO $APP_NAME.$APP_VERSION.$1.dmg
-    mv $APP_NAME.$APP_VERSION.$1.dmg $PUBLISH_OUTPUT
+    if [ -x "$(command -v dpkg)" ]; then
+        # Create DMG file
+        header "Creating DMG for macOS ($1) ..."
+
+        hdiutil create -volname $APP_NAME -srcfolder $APP_NAME.app -ov -format UDZO $APP_NAME.$APP_VERSION.$1.dmg
+        mv $APP_NAME.$APP_VERSION.$1.dmg $PUBLISH_OUTPUT
+    else
+        echo -en "\033[0;31m"
+        echo "! For DMG creation, use macOS and ensure "hdiutil" is available."
+        echo -en "\033[0m"
+
+        header "Creating ZIP for macOS ($1) ..."
+
+        # Create ZIP file
+        zip -r $APP_NAME.$APP_VERSION.$1.zip $APP_NAME.app
+        mv $APP_NAME.$APP_VERSION.$1.zip $PUBLISH_OUTPUT
+    fi
 
     cd $APPLICATION_DIR
 }
@@ -89,14 +110,14 @@ create_deb_package() {
     if [ -x "$(command -v dpkg)" ]; then
         header "Creating DEB package for Linux ($1) ..."
 
-        cd $PUBLISH_BUILD/$APP_NAME.$APP_VERSION.$1
+        cd $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1
 
         # Copy debian folder into release folder
         cp -r $PUBLISH_TEMPLATES/linux/deb ./debian
 
         # Copy published binaries into debian folder
         mkdir -p ./debian/bin
-        cp $APP_NAME ./debian/bin || abort
+        cp $PROJECT_NAME ./debian/bin/$APP_NAME || abort
 
         # Replace version placeholder in control file, overwrite existing file
         cp ./debian/DEBIAN/control ./debian/DEBIAN/control-template
@@ -166,7 +187,7 @@ create_flatpack_package() {
 
         # Copy published binaries into debian folder
         mkdir -p ./flatpak/bin
-        cp $APP_NAME ./flatpak/bin || abort
+        cp $PROJECT_NAME ./flatpak/bin/$APP_NAME || abort
 
         # Replace version placeholder in manifest file, overwrite existing file
         cat ./flatpak/APP_URN.yml\
@@ -221,6 +242,16 @@ create_flatpack_package() {
     fi
 }
 
+# Check ifzip is installed
+if [ ! -x "$(command -v zip)" ]; then
+    echo -en "\033[0;31m"
+    echo "❌ zip is not installed"
+    echo -en "\033[0m"
+    echo "Please install zip and try again."
+
+    abort
+fi
+
 # Platforms to target
 if [ -z "$1" ]; then
     PLATFORMS=$PUBLISH_PLATFORMS
@@ -263,9 +294,9 @@ fi
 cd $APPLICATION_DIR
 
 # Check if we are in the right directory
-if [ ! -f "$APP_NAME.csproj" ]; then
+if [ ! -f "$PROJECT_NAME.csproj" ]; then
     echo -en "\033[0;31m"
-    echo "❌ $APP_NAME.csproj not found!"
+    echo "❌ $PROJECT_NAME.csproj not found!"
     abort
 fi
 
@@ -273,7 +304,8 @@ fi
 for PLATFORM in $PLATFORMS; do
     # Clearing previous builds
     header "Clearing previous builds..."
-    rm -rf ./bin ./obj ./publish/build/*
+    rm -rf ./bin ./obj
+    rm -rf $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$PLATFORM
     dotnet clean || abort
 
     header "Publishing for $PLATFORM..."
@@ -295,7 +327,7 @@ for PLATFORM in $PLATFORMS; do
         create_flatpack_package $PLATFORM
     fi
 
-    rm -rf $PUBLISH_BUILD/$APP_NAME.$APP_VERSION.$PLATFORM
+    rm -rf $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$PLATFORM
 done
 
 header "Build and packaging complete."

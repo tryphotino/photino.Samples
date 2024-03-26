@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=APP_NAME
-Exec=/usr/bin/APP_NAME
+Exec=APP_URN
 Comment=APP_DESC_SHORT
 Terminal=false
-Icon=/usr/share/icons/hicolor/512x512/apps/APP_URN.png
+Icon=APP_URN
 Type=Application

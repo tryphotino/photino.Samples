@@ -379,6 +379,14 @@ sudo apt install flatpak
 
 # Add the Flathub repository
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Add the GNOME runtime and SDK forx64
+flatpak install org.gnome.Sdk/x86_64/45
+flatpak install org.gnome.Platform/x86_64/45
+
+# Add the GNOME runtime and SDK for ARM64
+flatpak install org.gnome.Sdk/aarch64/45
+flatpak install org.gnome.Platform/aarch64/45
 ```
 
 > Listing 13: Install Flatpak and add Flathub repository

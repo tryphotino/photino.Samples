@@ -1,21 +1,23 @@
 #!/bin/bash
 
-# Set publish options
-APP_NAME="PublishPhotino"
+# Set application options
+APP_NAME="Publish Photino"
 APP_NAME_LC=$(echo $APP_NAME | tr '[:upper:]' '[:lower:]')
+APP_NAME_LCD=$(echo $APP_NAME_LC | sed 's/ /-/g')
 
 APP_URN_ROOT="io.tryphotino"
-APP_URN="$APP_URN_ROOT.$APP_NAME_LC"
+APP_URN="$APP_URN_ROOT.$APP_NAME_LCD"
 
 APP_MAINTAINER="TryPhotino <info@tryphotino.io>"
 APP_DESC_SHORT="PublishPhotino Demo"
 APP_DESC_LONG="PublishPhotino is a simple, cross-platform demo to show packaging options for Photino applications."
 
+# Set project options
 PROJECT_NAME="$APP_NAME"
 PROJECT_ROOT=$(pwd)/..
+PROJECT_DIR="$PROJECT_ROOT/$PROJECT_NAME"
 
-APPLICATION_DIR="$PROJECT_ROOT/$PROJECT_NAME"
-
+# Set publish options
 PUBLISH_CONFIG="Release"
 PUBLISH_PLATFORMS="win-x64 win-arm64 osx-x64 osx-arm64 linux-x64 linux-arm64"
 
@@ -51,45 +53,45 @@ function abort() {
 create_win_package() {
     header "Creating package for Windows ($1) ..."
 
-    cd $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1
+    cd "$PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1"
 
-    mv $PROJECT_NAME.exe $APP_NAME.$APP_VERSION.$1.exe
+    mv "$PROJECT_NAME.exe" "$APP_NAME.exe"
 
-    zip -r $APP_NAME.$APP_VERSION.$1.zip $APP_NAME.$APP_VERSION.$1.exe
+    zip -r "$APP_NAME_LCD.$APP_VERSION.$1.zip" "$APP_NAME.exe"
 
-    mv $APP_NAME.$APP_VERSION.$1.zip $PUBLISH_OUTPUT
+    mv "$APP_NAME_LCD.$APP_VERSION.$1.zip" "$PUBLISH_OUTPUT"
 
-    cd $APPLICATION_DIR
+    cd "$PROJECT_DIR"
 }
 
 # Function to create packages for macOS
 create_mac_app_bundle() {
     header "Creating app bundle for macOS ($1) ..."
 
-    cd $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1
+    cd "$PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1"
     
-    cp -r $PUBLISH_TEMPLATES/osx/APP_NAME.app "./$APP_NAME.app"
+    cp -r "$PUBLISH_TEMPLATES/osx/APP_NAME.app/" "./$APP_NAME.app/"
     
-    mkdir -p $APP_NAME.app/Contents/MacOS/
-    mv $PROJECT_NAME $APP_NAME.app/Contents/MacOS/$APP_NAME
+    mkdir -p "$APP_NAME.app/Contents/MacOS/"
+    mv "$PROJECT_NAME" "$APP_NAME.app/Contents/MacOS/$APP_NAME"
 
     # Replace version placeholder in Info.plist file, overwrite existing file
-    cp $APP_NAME.app/Contents/Info.plist $APP_NAME.app/Contents/Info.plist-template
+    cp "$APP_NAME.app/Contents/Info.plist" "$APP_NAME.app/Contents/Info.plist-template"
     
-    cat $APP_NAME.app/Contents/Info.plist-template\
+    cat "$APP_NAME.app/Contents/Info.plist-template"\
         | sed "s/APP_NAME/$APP_NAME/"\
         | sed "s/APP_URN/$APP_URN/"\
         | sed "s/APP_VERSION/$APP_VERSION/"\
-        > $APP_NAME.app/Contents/Info.plist
+        > "$APP_NAME.app/Contents/Info.plist"
 
-    rm $APP_NAME.app/Contents/Info.plist-template
+    rm "$APP_NAME.app/Contents/Info.plist-template"
 
-    if [ -x "$(command -v dpkg)" ]; then
+    if [ -x "$(command -v hdiutil)" ]; then
         # Create DMG file
         header "Creating DMG for macOS ($1) ..."
 
-        hdiutil create -volname $APP_NAME -srcfolder $APP_NAME.app -ov -format UDZO $APP_NAME.$APP_VERSION.$1.dmg
-        mv $APP_NAME.$APP_VERSION.$1.dmg $PUBLISH_OUTPUT
+        hdiutil create -volname "$APP_NAME" -srcfolder "$APP_NAME.app" -ov -format UDZO "$APP_NAME_LCD.$APP_VERSION.$1.dmg"
+        mv "$APP_NAME_LCD.$APP_VERSION.$1.dmg" "$PUBLISH_OUTPUT"
     else
         echo -en "\033[0;31m"
         echo "! For DMG creation, use macOS and ensure "hdiutil" is available."
@@ -98,11 +100,11 @@ create_mac_app_bundle() {
         header "Creating ZIP for macOS ($1) ..."
 
         # Create ZIP file
-        zip -r $APP_NAME.$APP_VERSION.$1.zip $APP_NAME.app
-        mv $APP_NAME.$APP_VERSION.$1.zip $PUBLISH_OUTPUT
+        zip -r "$APP_NAME_LCD.$APP_VERSION.$1.zip" "$APP_NAME.app"
+        mv "$APP_NAME_LCD.$APP_VERSION.$1.zip" "$PUBLISH_OUTPUT"
     fi
 
-    cd $APPLICATION_DIR
+    cd "$PROJECT_DIR"
 }
 
 # Functions to create packages for Linux
@@ -110,27 +112,29 @@ create_deb_package() {
     if [ -x "$(command -v dpkg)" ]; then
         header "Creating DEB package for Linux ($1) ..."
 
-        cd $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1
+        cd "$PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1"
 
         # Copy debian folder into release folder
-        cp -r $PUBLISH_TEMPLATES/linux/deb ./debian
+        cp -r "$PUBLISH_TEMPLATES/linux/deb/" "./debian/"
 
         # Copy published binaries into debian folder
-        mkdir -p ./debian/bin
-        cp $PROJECT_NAME ./debian/bin/$APP_NAME || abort
+        mkdir -p "./debian/bin/"
+        cp "$PROJECT_NAME" "./debian/bin/$APP_NAME" || abort
 
         # Replace version placeholder in control file, overwrite existing file
-        cp ./debian/DEBIAN/control ./debian/DEBIAN/control-template
+        cp "./debian/DEBIAN/control" "./debian/DEBIAN/control-template"
 
-        cat ./debian/DEBIAN/control-template \
+        cat "./debian/DEBIAN/control-template" \
+            | sed "s/APP_NAME_LCD/$APP_NAME_LCD/g"\
+            | sed "s/APP_NAME_LC/$APP_NAME_LC/g"\
             | sed "s/APP_NAME/$APP_NAME/g"\
             | sed "s/APP_MAINTAINER/$APP_MAINTAINER/g"\
             | sed "s/APP_VERSION/$APP_VERSION/g"\
             | sed "s/APP_DESC_SHORT/$APP_DESC_SHORT/g"\
             | sed "s/APP_DESC_LONG/$APP_DESC_LONG/g"\
-            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > ./debian/DEBIAN/control
+            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > "./debian/DEBIAN/control"
         
-        rm ./debian/DEBIAN/control-template
+        rm "./debian/DEBIAN/control-template"
 
         # Move doc folder to correct location
         mv "./debian/usr/share/doc/APP_NAME/" "./debian/usr/share/doc/$APP_NAME_LC/"
@@ -144,15 +148,16 @@ create_deb_package() {
         else
             # Get previous to last git tag
             prev_tag=$(git tag -l 2> /dev/null | sed 's/v//' | sort -uVr | sed -n 2p)
-            $(git log --pretty=format:"%ad %an%n%s%n" --date=short --no-merges v$prev_tag..HEAD 2> /dev/null) > ./changelog
+            echo "$(git log --pretty=format:"%ad %an%n%s%n" --date=short --no-merges v$prev_tag..HEAD)" > "./changelog"
         
-            gzip --best -n ./changelog
-            mv changelog.gz ./debian/usr/share/doc/$APP_NAME_LC/
-            rm -f ./changelog
+            gzip --best -n "./changelog"
+            mv "changelog.gz" "./debian/usr/share/doc/$APP_NAME_LC/"
+            rm -f "./changelog"
         fi
 
         # Replace placeholders in desktop config, overwrite existing file
         cat "./debian/usr/share/applications/APP_URN.desktop"\
+            | sed "s/APP_NAME_LC/$APP_NAME_LC/g"\
             | sed "s/APP_NAME/$APP_NAME/g"\
             | sed "s/APP_URN/$APP_URN/g"\
             | sed "s/APP_DESC_SHORT/$APP_DESC_SHORT/g"\
@@ -164,11 +169,11 @@ create_deb_package() {
         mv "./debian/usr/share/icons/hicolor/512x512/apps/APP_URN.png" "./debian/usr/share/icons/hicolor/512x512/apps/$APP_URN.png"
 
         # Create DEB package, stop publishing on error
-        dpkg-deb --root-owner-group --build debian 2> /dev/null || abort
-        mv 'debian.deb' "$PUBLISH_OUTPUT/$APP_NAME.$APP_VERSION.$1.deb"
-        rm -rf ./debian
+        dpkg-deb --root-owner-group --build "./debian/" || abort
+        mv "debian.deb" "$PUBLISH_OUTPUT/$APP_NAME_LCD.$APP_VERSION.$1.deb"
+        rm -rf "./debian/"
 
-        cd $APPLICATION_DIR
+        cd "$PROJECT_DIR"
     else
         echo -en "\033[0;31m"
         echo "! For Debian package generation, install 'dpkg' with 'apt' or 'brew'."
@@ -180,22 +185,23 @@ create_flatpack_package() {
     if [ -x "$(command -v flatpak-builder)" ]; then
         header "Creating Flatpak package for Linux ($1) ..."
 
-        cd $PUBLISH_BUILD/$APP_NAME.$APP_VERSION.$1
+        cd "$PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$1"
 
         # Copy flatpak folder into release folder
-        cp -r $PUBLISH_TEMPLATES/linux/flatpak ./flatpak
-
+        cp -r "$PUBLISH_TEMPLATES/linux/flatpak/" "./flatpak/"
+        
         # Copy published binaries into debian folder
-        mkdir -p ./flatpak/bin
-        cp $PROJECT_NAME ./flatpak/bin/$APP_NAME || abort
+        mkdir -p "./flatpak/bin/"
+        cp "$PROJECT_NAME" "./flatpak/bin/$APP_NAME" || abort
 
         # Replace version placeholder in manifest file, overwrite existing file
-        cat ./flatpak/APP_URN.yml\
+        cat "./flatpak/APP_URN.yml"\
+            | sed "s/APP_NAME_LC/$APP_NAME_LC/g"\
             | sed "s/APP_NAME/$APP_NAME/g"\
             | sed "s/APP_URN/$APP_URN/g"\
-            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > ./flatpak/$APP_URN.yml
+            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > "./flatpak/$APP_URN.yml"
 
-        rm ./flatpak/APP_URN.yml
+        rm "./flatpak/APP_URN.yml"
 
         # Move doc folder to correct location
         mv "./flatpak/app/share/doc/APP_URN/" "./flatpak/app/share/doc/$APP_URN/"
@@ -209,32 +215,33 @@ create_flatpack_package() {
         else
             # Get previous to last git tag
             prev_tag=$(git tag -l 2> /dev/null | sed 's/v//' | sort -uVr | sed -n 2p)
-            $(git log --pretty=format:"%ad %an%n%s%n" --date=short --no-merges v$prev_tag..HEAD 2> /dev/null) > ./changelog
+            echo "$(git log --pretty=format:"%ad %an%n%s%n" --date=short --no-merges v$prev_tag..HEAD)" > "./changelog"
 
-            gzip --best -n ./changelog
-            mv changelog.gz ./flatpak/app/share/doc/$APP_URN/
-            rm -f ./changelog
+            gzip --best -n "./changelog"
+            mv "changelog.gz" "./flatpak/app/share/doc/$APP_URN/"
+            rm -f "./changelog"
         fi
 
         # Replace placeholders in desktop config, overwrite existing file
-        cat ./flatpak/app/share/applications/APP_URN.desktop \
+        cat "./flatpak/app/share/applications/APP_URN.desktop" \
+            | sed "s/APP_NAME_LC/$APP_NAME_LC/g"\
             | sed "s/APP_NAME/$APP_NAME/g"\
             | sed "s/APP_URN/$APP_URN/g"\
             | sed "s/APP_DESC_SHORT/$APP_DESC_SHORT/g"\
-            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > ./flatpak/app/share/applications/$APP_URN.desktop
+            | sed "s/APP_ARCH/$(echo $1 | sed 's/linux-//g')/g" > "./flatpak/app/share/applications/$APP_URN.desktop"
         
-        rm ./flatpak/app/share/applications/APP_URN.desktop
+        rm "./flatpak/app/share/applications/APP_URN.desktop"
 
         # Move icon to correct location
         mv "./flatpak/app/share/icons/hicolor/512x512/apps/APP_URN.png" "./flatpak/app/share/icons/hicolor/512x512/apps/$APP_URN.png"
 
         # Create Flatpak package, stop publishing on error
-        flatpak-builder --repo=./flatpak/.repo --force-clean ./flatpak/.build ./flatpak/$APP_URN.yml || abort
-        flatpak build-bundle ./flatpak/.repo $PUBLISH_OUTPUT/$APP_NAME.$APP_VERSION.$1.flatpak $APP_URN || abort
+        flatpak-builder --repo="./flatpak/.repo" --force-clean "./flatpak/.build" "./flatpak/$APP_URN.yml" || abort
+        flatpak build-bundle "./flatpak/.repo" "$PUBLISH_OUTPUT/$APP_NAME_LCD.$APP_VERSION.$1.flatpak" "$APP_URN" || abort
 
-        rm -rf ./flatpak ./flatpak-builder
+        rm -rf "./flatpak" "./flatpak-builder"
 
-        cd $APPLICATION_DIR
+        cd "$PROJECT_DIR"
     else
         echo -en "\033[0;31m"
         echo "! For Flatpak package generation, install 'flatpak-builder' with 'apt'."
@@ -242,7 +249,7 @@ create_flatpack_package() {
     fi
 }
 
-# Check ifzip is installed
+# Check if zip is installed
 if [ ! -x "$(command -v zip)" ]; then
     echo -en "\033[0;31m"
     echo "❌ zip is not installed"
@@ -291,7 +298,7 @@ if [[ ! $input =~ ^[Yy]$ ]] && [ ! -z "$input" ]; then
 fi
 
 # CD into application directory
-cd $APPLICATION_DIR
+cd "$PROJECT_DIR"
 
 # Check if we are in the right directory
 if [ ! -f "$PROJECT_NAME.csproj" ]; then
@@ -305,7 +312,7 @@ for PLATFORM in $PLATFORMS; do
     # Clearing previous builds
     header "Clearing previous builds..."
     rm -rf ./bin ./obj
-    rm -rf $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$PLATFORM
+    rm -rf "$PUBLISH_BUILD/$APP_NAME.$APP_VERSION.$PLATFORM"
     dotnet clean || abort
 
     header "Publishing for $PLATFORM..."
@@ -327,7 +334,7 @@ for PLATFORM in $PLATFORMS; do
         create_flatpack_package $PLATFORM
     fi
 
-    rm -rf $PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$PLATFORM
+    rm -rf "$PUBLISH_BUILD/$PROJECT_NAME.$APP_VERSION.$PLATFORM"
 done
 
 header "Build and packaging complete."

@@ -2,7 +2,7 @@ Source: APP_NAME
 Section: non-free/utils
 Priority: optional
 Maintainer: APP_MAINTAINER
-Package: APP_NAME
+Package: APP_NAME_LCD
 Version: APP_VERSION
 Architecture: APP_ARCH
 Depends: libc6 (>= 2.31), gir1.2-gtk-3.0 (>= 3.24), libwebkit2gtk-4.1-0 (>= 2.42)

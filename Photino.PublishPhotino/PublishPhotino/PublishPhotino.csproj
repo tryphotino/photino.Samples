@@ -12,7 +12,7 @@
       Publish properties
     -->
     <!-- Set the application icon -->
-    <ApplicationIcon>./publish/templates/win/app.ico</ApplicationIcon>
+    <ApplicationIcon>../publish/templates/win/app.ico</ApplicationIcon>
 
     <!-- Version will be set to a debug version if not overridden by CLI parameter. -->
     <Version>0.0.0-$([System.DateTime]::Now.ToString(yyyyMMddHms))</Version>

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set application options
-APP_NAME="Publish Photino"
+APP_NAME="PublishPhotino"
 APP_NAME_LC=$(echo $APP_NAME | tr '[:upper:]' '[:lower:]')
 APP_NAME_LCD=$(echo $APP_NAME_LC | sed 's/ /-/g')
 

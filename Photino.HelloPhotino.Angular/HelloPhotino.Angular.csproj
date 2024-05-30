@@ -56,7 +56,7 @@
 		<Exec WorkingDirectory="$(UiRoot)" Command="npm run build" />
 		
 		<ItemGroup>
-			<UiBuildOutputFiles Include="$(UiRoot)$(UiBuildOutput)**\*.*" />
+			<UiBuildOutputFiles Include="$(UiRoot)$(UiBuildOutput)\**\*.*" />
 		</ItemGroup>
 		
 		<Copy SourceFiles="@(UiBuildOutputFiles)" DestinationFiles="@(UiBuildOutputFiles->'$(WwwRoot)%(RecursiveDir)%(Filename)%(Extension)')" />

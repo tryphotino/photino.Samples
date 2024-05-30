@@ -11,7 +11,7 @@ class Program
     static void Main(string[] args)
     {
         PhotinoServer
-            .CreateStaticFileServer(args, out string baseUrl)
+            .CreateStaticFileServer(args, 8000, 100, "wwwroot/browser/", out string baseUrl)
             .RunAsync();
 
         // Window title declared here for visibility

@@ -7,12 +7,23 @@ namespace Photino.HelloPhotino.Vue;
 
 class Program
 {
+#if DEBUG
+    public static bool IsDebugMode = true;
+#else
+    public static bool IsDebugMode = false;
+#endif
+
     [STAThread]
     static void Main(string[] args)
     {
         PhotinoServer
             .CreateStaticFileServer(args, out string baseUrl)
             .RunAsync();
+
+        // The appUrl is set to the local development server when in debug mode.
+        // This helps with hot reloading and debugging.
+        string appUrl = IsDebugMode ? "http://localhost:5173" : $"{baseUrl}/index.html";
+        Console.WriteLine($"Serving Vue app at {appUrl}");
 
         // Window title declared here for visibility
         string windowTitle = "Photino.Vue Demo App";
@@ -56,7 +67,7 @@ class Program
                 // "window.external.receiveMessage(callback: Function)"
                 window.SendWebMessage(response);
             })
-            .Load($"{baseUrl}/index.html"); // Can be used with relative path strings or "new URI()" instance to load a website.
+            .Load(appUrl); // Can be used with relative path strings or "new URI()" instance to load a website.
 
         window.WaitForClose(); // Starts the application event loop
     }

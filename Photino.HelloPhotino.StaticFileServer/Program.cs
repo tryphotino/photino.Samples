@@ -1,4 +1,4 @@
-﻿using PhotinoNET;
+﻿using Photino.NET;
 using PhotinoNET.Server;
 using System.Drawing;
 using System.Text;

@@ -23,7 +23,7 @@
     <PackageReference Include="Grpc.Core" Version="2.46.6" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting" Version="2.2.7" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
-    <PackageReference Include="Photino.NET" Version="2.6.0" />
+    <PackageReference Include="Photino.NET" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

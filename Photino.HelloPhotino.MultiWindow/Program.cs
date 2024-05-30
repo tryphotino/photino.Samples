@@ -1,4 +1,4 @@
-﻿using PhotinoNET;
+﻿using Photino.NET;
 using System;
 
 namespace HelloWorldApp

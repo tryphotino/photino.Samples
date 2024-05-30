@@ -1,4 +1,4 @@
-using PhotinoNET;
+using Photino.NET;
 
 namespace PhotinoApp;
 

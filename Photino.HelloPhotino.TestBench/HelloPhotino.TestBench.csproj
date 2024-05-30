@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <Compile Remove="wwwroot\**" />
-    <PackageReference Include="Photino.NET" Version="2.6.0" />
+    <PackageReference Include="Photino.NET" Version="3.0.0" />
     <None Update="wwwroot\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

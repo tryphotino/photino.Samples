@@ -17,7 +17,7 @@ namespace HelloPhotino.ThreeD
                 .SetTitle(windowTitle)
                 // Resize to a percentage of the main monitor work area
                 .SetUseOsDefaultSize(false)
-                .SetSize(new Size(700, 525))
+                .SetSize(new Size(1024, 800))
                 // Center window in the middle of the screen
                 .Center()
                 // Users can resize windows by default.

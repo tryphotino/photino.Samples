@@ -1,4 +1,4 @@
-﻿using Photino.NET;
+using Photino.NET;
 using PhotinoNET.Server;
 using System.Drawing;
 using System.Text;
@@ -68,7 +68,7 @@ class Program
                 window.SendWebMessage(response);
             })
             .Load(appUrl); // Can be used with relative path strings or "new URI()" instance to load a website.
-
+ 
         window.WaitForClose(); // Starts the application event loop
     }
 }

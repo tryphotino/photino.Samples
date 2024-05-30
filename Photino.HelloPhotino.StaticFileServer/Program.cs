@@ -1,4 +1,4 @@
-﻿using Photino.NET;
+using Photino.NET;
 using PhotinoNET.Server;
 using System.Drawing;
 using System.Text;
@@ -20,6 +20,8 @@ class Program
         // Creating a new PhotinoWindow instance with the fluent API
         var window = new PhotinoWindow()
             .SetTitle(windowTitle)
+            .SetUseOsDefaultSize(false)
+            .SetSize(new Size(2048, 1024))
             // Resize to a percentage of the main monitor work area
             //.Resize(50, 50, "%")
             .SetUseOsDefaultSize(false)

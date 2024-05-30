@@ -9,11 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="wwwroot\**" />
     <PackageReference Include="Photino.NET" Version="3.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Compile Remove="wwwroot\**" />
     <None Update="wwwroot\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-
 </Project>

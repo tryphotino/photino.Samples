@@ -21,6 +21,7 @@
 		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="8.0.1" Condition=" '$(GenerateEmbeddedFilesManifest)' == 'true' " />
 		<PackageReference Include="Photino.NET" Version="3.0.0" />
 		<PackageReference Include="Photino.NET.Server" Version="1.0.0" />
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
 	</ItemGroup>
 
 	<PropertyGroup>

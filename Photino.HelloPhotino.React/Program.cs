@@ -7,19 +7,23 @@ namespace Photino.HelloPhotino.React;
 
 class Program
 {
+#if DEBUG
     public static bool IsDebugMode = true;
+#else
+    public static bool IsDebugMode = false;
+#endif
 
     [STAThread]
     static void Main(string[] args)
     {
-#if RELEASE
-        IsDebugMode = false;
-#endif
         PhotinoServer
             .CreateStaticFileServer(args, out string baseUrl)
             .RunAsync();
 
+        // The appUrl is set to the local development server when in debug mode.
+        // This helps with hot reloading and debugging.
         string appUrl = IsDebugMode ? "http://localhost:3000" : $"{baseUrl}/index.html";
+        Console.WriteLine($"Serving React app at {appUrl}");
 
         // Window title declared here for visibility
         string windowTitle = "Photino.React Demo App";

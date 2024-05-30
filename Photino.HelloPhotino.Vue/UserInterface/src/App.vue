@@ -1,126 +1,85 @@
-<!--
-This example fetches latest Vue.js commits data from GitHub’s API and displays them as a list.
-You can switch between the two branches.
--->
-
-<!-- Adapted from https://vuejs.org/examples/#fetching-data -->
-
-<script>
-const API_URL = `https://api.github.com/repos/tryphotino/photino.NET/commits?per_page=3&sha=`;
-
-export default {
-  data: () => ({
-    branches: ["master", "debug"],
-    currentBranch: undefined,
-    commits: [],
-  }),
-
-  created() {
-    this.selectBranch(this.branches[0]);
-  },
-
-  watch: {
-    // re-fetch whenever currentBranch changes
-    currentBranch: "selectBranch",
-  },
-
-  methods: {
-    async selectBranch(branch) {
-      this.currentBranch = branch;
-      this.commits = await this.fetchCommits(branch);
-    },
-    async fetchCommits(branch) {
-      const url = `${API_URL}${branch}`;
-      return await (await fetch(url)).json();
-    },
-    truncate(v) {
-      const newline = v.indexOf("\n");
-      return newline > 0 ? v.slice(0, newline) : v;
-    },
-    formatDate(v) {
-      return v.replace(/T|Z/g, " ");
-    },
-  },
-};
+<script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router'
+import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
-  <div id="content">
-    <h1>Latest Photino.NET Commits</h1>
-    <div v-for="(branch, index) in branches" :key="index">
-      <input
-        type="radio"
-        :id="'option-' + branch"
-        :value="branch"
-        name="branch"
-        v-model="currentBranch"
-      />
-      <label :for="'option-' + branch">{{ branch }}</label>
+  <header>
+    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+
+    <div class="wrapper">
+      <HelloWorld msg="You did it!" />
+
+      <nav>
+        <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/about">About</RouterLink>
+      </nav>
     </div>
-    <p>tryphotino/photino.NET @{{ currentBranch }}</p>
-    <ul id="commits" v-if="commits && commits.length > 0">
-      <li v-for="(commit, index) in commits" :key="index">
-        <div class="commit-head">
-          <span class="author">
-            <a :href="commit.author.html_url" target="_blank">{{
-              commit.commit.author.name
-            }}</a>
-            &nbsp;–&nbsp;
-            <a :href="commit.html_url" target="_blank">{{
-              commit.sha.slice(0, 7)
-            }}</a>
-          </span>
-          <span class="date">{{ formatDate(commit.commit.author.date) }}</span>
-        </div>
-        <p class="message">{{ truncate(commit.commit.message) }}</p>
-      </li>
-    </ul>
-  </div>
+  </header>
+
+  <RouterView />
 </template>
 
-<style>
-#content {
+<style scoped>
+header {
+  line-height: 1.5;
+  max-height: 100vh;
+}
+
+.logo {
   display: block;
+  margin: 0 auto 2rem;
+}
+
+nav {
   width: 100%;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 2rem;
 }
 
-a {
-  text-decoration: none;
-  color: #42b883;
+nav a.router-link-exact-active {
+  color: var(--color-text);
 }
 
-input[type="radio"] {
-  cursor: pointer;
-}
-input[type="radio"] + label {
-  margin-left: 0.5em;
-  cursor: pointer;
+nav a.router-link-exact-active:hover {
+  background-color: transparent;
 }
 
-ul#commits {
-  margin-top: 1rem;
-  padding: 0;
-  list-style: none inside;
+nav a {
+  display: inline-block;
+  padding: 0 1rem;
+  border-left: 1px solid var(--color-border);
 }
-ul#commits li {
-  max-width: 500px;
-  background: rgb(57, 55, 80);
-  border-radius: 5px;
-  line-height: 1.5em;
-  margin-bottom: 20px;
-  padding: 0.5rem 1rem 0.65rem;
-  color: #fafafa;
+
+nav a:first-of-type {
+  border: 0;
 }
-ul#commits li .commit-head {
-  display: flex;
-  flex: 0 auto;
-  flex-direction: row;
-  place-content: center space-between;
-}
-ul#commits li .commit-head .author {
-  font-weight: bold;
-}
-ul#commits li .commit-head .date {
-  color: #dadada;
+
+@media (min-width: 1024px) {
+  header {
+    display: flex;
+    place-items: center;
+    padding-right: calc(var(--section-gap) / 2);
+  }
+
+  .logo {
+    margin: 0 2rem 0 0;
+  }
+
+  header .wrapper {
+    display: flex;
+    place-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  nav {
+    text-align: left;
+    margin-left: -1rem;
+    font-size: 1rem;
+
+    padding: 1rem 0;
+    margin-top: 1rem;
+  }
 }
 </style>

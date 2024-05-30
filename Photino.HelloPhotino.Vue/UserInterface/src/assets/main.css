@@ -1,15 +1,9 @@
-@import "./base.css";
-
-html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: auto;
-}
+@import './base.css';
 
 #app {
-  padding: 5rem 7rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
   font-weight: normal;
 }
 
@@ -18,6 +12,7 @@ a,
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
+  padding: 3px;
 }
 
 @media (hover: hover) {
@@ -27,7 +22,14 @@ a,
 }
 
 @media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
   #app {
-    padding: 7rem 12rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
   }
 }

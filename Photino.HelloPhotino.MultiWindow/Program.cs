@@ -1,4 +1,4 @@
-﻿using PhotinoNET;
+﻿using Photino.NET;
 using System;
 
 namespace HelloWorldApp
@@ -25,7 +25,7 @@ namespace HelloWorldApp
         static void CloseWindowMessageDelegate(object sender, string message)
         {
             var window = (PhotinoWindow)sender;
-            
+
             if (message == "close-window")
             {
                 Console.WriteLine($"Closing \"{window.Title}\".");
@@ -35,14 +35,14 @@ namespace HelloWorldApp
 
         static void NewWindowMessageDelegate(object sender, string message)
         {
-            var window = (PhotinoWindow)sender;
+            var parent = (PhotinoWindow)sender;
 
             if (message == "random-window")
             {
                 var random = new Random();
 
-                int workAreaWidth = window.MainMonitor.WorkArea.Width;
-                int workAreaHeight = window.MainMonitor.WorkArea.Height;
+                int workAreaWidth = parent.MainMonitor.WorkArea.Width;
+                int workAreaHeight = parent.MainMonitor.WorkArea.Height;
 
                 int width = random.Next(400, 800);
                 int height = (int)Math.Round(width * 0.625, 0);
@@ -53,7 +53,7 @@ namespace HelloWorldApp
 
                 _childCount++;
 
-                new PhotinoWindow()
+                new PhotinoWindow(parent)
                     .SetTitle($"Random Window ({_childCount})")
                     .SetUseOsDefaultSize(false)
                     .SetHeight(height)

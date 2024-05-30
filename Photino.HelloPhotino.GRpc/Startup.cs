@@ -18,10 +18,11 @@ namespace HelloPhotino.GRpc
                 options.AddPolicy("AllowLocalgRpc", builder =>
                 {
                     //for security, default to only accepting gRPC calls and only from the local machine
-                    builder.WithOrigins("null", "http://localhost", "https://localhost", "http://127.0.0.1", "https://127.0.0.1")
+                    builder //.WithOrigins("null", "http://localhost:5000", "https://localhost", "http://127.0.0.1", "https://127.0.0.1")
+                        .AllowAnyOrigin()
                         .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
+                        .AllowAnyHeader();
+                    //.WithExposedHeaders("Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
                 });
             });
         }

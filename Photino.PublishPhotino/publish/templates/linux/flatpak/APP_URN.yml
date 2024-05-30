@@ -1,0 +1,28 @@
+id: APP_URN
+runtime: org.gnome.Platform
+runtime-version: "45"
+sdk: org.gnome.Sdk
+command: APP_URN
+name:
+modules:
+    - name: APP_URN
+      buildsystem: simple
+      build-commands:
+          - install -D "APP_NAME" "/app/bin/APP_URN"
+          - install -D "APP_URN.desktop" "/app/share/applications/APP_URN.desktop"
+          - install -D "copyright" "/app/share/doc/APP_URN/copyright"
+          - install -D "APP_URN.png" "/app/share/icons/hicolor/512x512/apps/APP_URN.png"
+      sources:
+          - type: file
+            path: "./bin/APP_NAME"
+          - type: file
+            path: "./app/share/applications/APP_URN.desktop"
+          - type: file
+            path: "./app/share/doc/APP_URN/copyright"
+          - type: file
+            path: "./app/share/icons/hicolor/512x512/apps/APP_URN.png"
+finish-args:
+    - "--socket=x11"
+    - "--socket=wayland"
+    - "--share=ipc"
+    - "--filesystem=home"

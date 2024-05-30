@@ -1,4 +1,4 @@
-﻿using PhotinoNET;
+﻿using Photino.NET;
 using System;
 using System.Drawing;
 using System.IO;
@@ -40,7 +40,8 @@ namespace HelloPhotinoApp
                 // PhotinoWindow was instantiated by calling a registration 
                 // method like the following RegisterWebMessageReceivedHandler.
                 // This could be added in the PhotinoWindowOptions if preferred.
-                .RegisterWebMessageReceivedHandler((object sender, string message) => {
+                .RegisterWebMessageReceivedHandler((object sender, string message) =>
+                {
                     var window = (PhotinoWindow)sender;
 
                     // The message argument is coming in from sendMessage.

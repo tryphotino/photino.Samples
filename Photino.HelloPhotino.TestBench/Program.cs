@@ -1,7 +1,5 @@
-﻿using PhotinoNET;
-using System;
+﻿using Photino.NET;
 using System.Drawing;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.Json;
@@ -36,58 +34,61 @@ namespace HelloPhotino.TestBench
                 ? "wwwroot/photino-logo.ico"
                 : "wwwroot/photino-logo.png";
 
-            string browserInit = string.Empty;
-
-            if (PhotinoWindow.IsWindowsPlatform)
-            {
-                //Windows example for WebView2
-                browserInit = "--disable-web-security --hide-scrollbars ";
-            }
-            else if (PhotinoWindow.IsMacOsPlatform)
-            {
-                //Mac example for Webkit on Cocoa
-                browserInit = JsonSerializer.Serialize(new
-                {
-                    standardFontFamily = "Helvetica Neue",
-                    defaultFontSize = 22
-                });
-            }
-            else if (PhotinoWindow.IsLinuxPlatform)
-            {
-                //Linux example for Webkit2Gtk
-                browserInit = JsonSerializer.Serialize(new
-                {
-                    set_enable_encrypted_media = true,
-                    //set_default_font_size = 48,
-                    //set_enable_developer_extras = true,
-                    set_default_font_family = "monospace"
-                });
-            }
+            //string browserInit = string.Empty;
+            //if (PhotinoWindow.IsWindowsPlatform)
+            //{
+            //    //Windows example for WebView2
+            //    browserInit = "--disable-web-security --hide-scrollbars ";
+            //}
+            //else if (PhotinoWindow.IsMacOsPlatform)
+            //{
+            //    //Mac example for Webkit on Cocoa
+            //    browserInit = JsonSerializer.Serialize(new
+            //    {
+            //        setLegacyEncryptedMediaAPIEnabled = true
+            //    });
+            //}
+            //else if (PhotinoWindow.IsLinuxPlatform)
+            //{
+            //    //Linux example for Webkit2Gtk
+            //    browserInit = JsonSerializer.Serialize(new
+            //    {
+            //        set_enable_encrypted_media = true,
+            //        //set_default_font_size = 48,
+            //        //set_enable_developer_extras = true,
+            //        set_default_font_family = "monospace"
+            //    });
+            //}
 
             mainWindow = new PhotinoWindow()
                 //.Load(new Uri("https://google.com"))
                 //.Load("https://duckduckgo.com/?t=ffab&q=user+agent+&ia=answer")
+                //.Load("https://localhost:8080/")
                 .Load("wwwroot/main.html")
                 //.Load("wwwroot/index.html")
                 //.LoadRawString("<h1>Hello Photino!</h1>")
 
                 //Window settings
+                //.Center()
                 .SetIconFile(iconFile)
                 .SetTitle($"My Photino Window {_windowNumber++}")
                 //.SetChromeless(true)
                 //.SetFullScreen(true)
                 //.SetMaximized(true)
                 //.SetMaxSize(640, 480)
+                //.SetMaxWidth(640)
+                //.SetMaxHeight(480)
                 //.SetMinimized(true)
                 //.SetMinSize(320, 240)
+                //.SetMinWidth(320)
+                //.SetMinHeight(240)
                 //.SetResizable(false)
                 //.SetTopMost(true)
-                //.SetUseOsDefaultLocation(false)
                 .SetUseOsDefaultSize(false)
-                //.Center()
-                //.SetSize(new Size(800, 600))
-                .SetHeight(600)
-                .SetWidth(800)
+                .SetSize(new Size(800, 600))
+                //.SetHeight(600)
+                //.SetWidth(800)
+                //.SetUseOsDefaultLocation(false)
                 //.SetLocation(new Point(50, 50))
                 //.SetTop(50)
                 //.SetLeft(50)
@@ -99,19 +100,20 @@ namespace HelloPhotino.TestBench
                 //Browser settings
                 //.SetContextMenuEnabled(false)
                 //.SetDevToolsEnabled(false)
-                .SetGrantBrowserPermissions(true)
+                //.SetGrantBrowserPermissions(true)
                 //.SetZoom(150)
 
                 //Browser startup flags
-                .SetBrowserControlInitParameters(browserInit)
-                //.SetUserAgent("Custom Photino User Agent")
-                //.SetMediaAutoplayEnabled(true)
+                //.SetBrowserControlInitParameters(browserInit)
                 //.SetFileSystemAccessEnabled(true)
-                //.SetWebSecurityEnabled(true)
+                //.SetIgnoreCertificateErrorsEnabled(false)
                 //.SetJavascriptClipboardAccessEnabled(true)
+                //.SetMediaAutoplayEnabled(true)
                 //.SetMediaStreamEnabled(true)
                 //.SetSmoothScrollingEnabled(true)
                 //.SetTemporaryFilesPath(@"C:\Temp")
+                //.SetUserAgent("Custom Photino User Agent")
+                //.SetWebSecurityEnabled(true)
 
                 .RegisterCustomSchemeHandler("app", AppCustomSchemeUsed)
 
@@ -137,60 +139,62 @@ namespace HelloPhotino.TestBench
                 ? "wwwroot/photino-logo.ico"
                 : "wwwroot/photino-logo.png";
 
-            var browserInit = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                ? "--disable-web-security --hide-scrollbars "           //Windows example for WebView2
-                : RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-                    ? "{ 'set_enable_encrypted_media': true }"          //Linux example for Webkit2Gtk
-                    : "{ 'setLegacyEncryptedMediaAPIEnabled': true }";  //Mac example for Webkit on Cocoa
+            //var browserInit = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            //    ? "--disable-web-security --hide-scrollbars "           //Windows example for WebView2
+            //    : RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+            //        ? "{ 'set_enable_encrypted_media': true }"          //Linux example for Webkit2Gtk
+            //        : "{ 'setLegacyEncryptedMediaAPIEnabled': true }";  //Mac example for Webkit on Cocoa
 
             mainWindow = new PhotinoWindow
             {
+                StartUrl = "wwwroot/main.html",
                 //StartUrl = "https://google.com",
                 //StartUrl = "https://duckduckgo.com/?t=ffab&q=user+agent+&ia=answer",
-                StartUrl = "wwwroot/main.html",
+                //StartUrl = "https://google.com",
                 //StartString = "<h1>Hello Photino!</h1>",
 
                 //Window settings
+                //Centered = true,
                 IconFile = iconFile,
                 Title = $"My Photino Window {_windowNumber++}",
                 //Chromeless = true,
                 //FullScreen = true,
                 //Maximized = true,
-                MaxWidth = 640,
-                MaxHeight = 480,
+                //MaxWidth = 640,
+                //MaxHeight = 480,
                 //MaxSize = new Point(640, 480),
                 //Minimized = true,
-                MinWidth = 320,
-                MinHeight = 240,
+                //MinWidth = 320,
+                //MinHeight = 240,
                 //MinSize = new Point(320, 240),
                 //Resizable = false,
                 //TopMost = true,
-                UseOsDefaultLocation = false,
                 UseOsDefaultSize = false,
-                Centered = true,
                 Size = new Size(800, 600),
-                Height = 600,
-                Width = 800,
-                Location = new Point(50, 50),
-                Top = 50,
-                Left = 50,
+                //Height = 600,
+                //Width = 800,
+                //UseOsDefaultLocation = false,
+                //Location = new Point(50, 50),
+                //Top = 50,
+                //Left = 50,
 
                 //Browser settings
-                ContextMenuEnabled = false,
-                DevToolsEnabled = false,
-                GrantBrowserPermissions = false,
-                Zoom = 150,
+                //ContextMenuEnabled = false,
+                //DevToolsEnabled = false,
+                //GrantBrowserPermissions = false,
+                //Zoom = 150,
 
                 //Browser startup flags
-                BrowserControlInitParameters = browserInit,
-                UserAgent = "Custom Photino User Agent",
-                MediaAutoplayEnabled = true,
-                FileSystemAccessEnabled = true,
-                WebSecurityEnabled = true,
-                JavascriptClipboardAccessEnabled = true,
-                MediaStreamEnabled = true,
-                SmoothScrollingEnabled = true,
+                //BrowserControlInitParameters = browserInit,
+                //UserAgent = "Custom Photino User Agent",
+                //MediaAutoplayEnabled = true,
+                //FileSystemAccessEnabled = true,
+                //WebSecurityEnabled = true,
+                //JavascriptClipboardAccessEnabled = true,
+                //MediaStreamEnabled = true,
+                //SmoothScrollingEnabled = true,
                 //TemporaryFilesPath = @"C:\Temp",
+                IgnoreCertificateErrorsEnabled = false,
 
                 WindowCreatingHandler = WindowCreating,
                 WindowCreatedHandler = WindowCreated,
@@ -521,3 +525,4 @@ namespace HelloPhotino.TestBench
         }
     }
 }
+

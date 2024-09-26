@@ -53,7 +53,7 @@ After you created a new project using one of the Photino templates, your `*.cspr
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Photino.NET" Version="3.0.0" />
+    <PackageReference Include="Photino.NET" Version="3.1.18" />
   </ItemGroup>
 
   <ItemGroup>
@@ -146,7 +146,7 @@ This is quite far from the single file executable we want to achieve. We can cha
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Photino.NET" Version="3.0.0" />
+    <PackageReference Include="Photino.NET" Version="3.1.18" />
   </ItemGroup>
 
   <ItemGroup>

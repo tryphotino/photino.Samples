@@ -10,7 +10,7 @@ namespace Photino.HelloPhotino.Angular;
 class Program
 {
 #if DEBUG
-    public static bool IsDebugMode = false;
+    public static bool IsDebugMode = true;
 #else
     public static bool IsDebugMode = false;
 #endif

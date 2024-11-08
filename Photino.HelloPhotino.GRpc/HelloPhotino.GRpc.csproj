@@ -13,8 +13,6 @@
     <None Update="wwwroot\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Compile Remove="node_modules\**" />
-    <None Remove="node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>

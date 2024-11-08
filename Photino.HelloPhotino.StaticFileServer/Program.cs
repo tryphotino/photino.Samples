@@ -1,11 +1,11 @@
 using Photino.NET;
-using PhotinoNET.Server;
+using Photino.NET.Server;
 using System.Drawing;
 using System.Text;
 
 namespace Photino.HelloPhotino.StaticFileServer;
 //NOTE: To hide the console window, go to the project properties and change the Output Type to Windows Application.
-// Or edit the .cspro file and change the <OutputType> tag from "WinExe" to "Exe".
+// Or edit the .csproj file and change the <OutputType> tag from "WinExe" to "Exe".
 
 class Program
 {

@@ -351,3 +351,7 @@ MigrationBackup/
 
 .vscode
 .DS_Store
+
+
+# Photino-specific
+node_modules/

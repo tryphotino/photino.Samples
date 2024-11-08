@@ -3,33 +3,30 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.3d", "Photino.HelloPhotino.3d\HelloPhotino.3d.csproj", "{ADCF9993-B7AE-4269-85A2-F06DFD49D70E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.3d", "Photino.HelloPhotino.3d\HelloPhotino.3d.csproj", "{ADCF9993-B7AE-4269-85A2-F06DFD49D70E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.TestBench", "Photino.HelloPhotino.TestBench\HelloPhotino.TestBench.csproj", "{C66B677E-1650-413A-8A41-0C133AE3A24B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.TestBench", "Photino.HelloPhotino.TestBench\HelloPhotino.TestBench.csproj", "{C66B677E-1650-413A-8A41-0C133AE3A24B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.3d.React", "Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.csproj", "{8A32DF9F-9A25-43E3-9BE5-1AA0D151DF8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.3d.React", "Photino.HelloPhotino.3d.React\HelloPhotino.3d.React.csproj", "{8A32DF9F-9A25-43E3-9BE5-1AA0D151DF8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.Angular", "Photino.HelloPhotino.Angular\HelloPhotino.Angular.csproj", "{6977A57F-B841-4BEF-BED8-7466A109A173}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.Angular", "Photino.HelloPhotino.Angular\HelloPhotino.Angular.csproj", "{6977A57F-B841-4BEF-BED8-7466A109A173}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.GRpc", "Photino.HelloPhotino.GRpc\HelloPhotino.GRpc.csproj", "{5D51D8C8-1531-425D-8B55-971C78CC64E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.GRpc", "Photino.HelloPhotino.GRpc\HelloPhotino.GRpc.csproj", "{5D51D8C8-1531-425D-8B55-971C78CC64E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.Vue", "Photino.HelloPhotino.Vue\HelloPhotino.Vue.csproj", "{AFAD48FE-3C94-459A-AEDA-EFDB03E2A5A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.Vue", "Photino.HelloPhotino.Vue\HelloPhotino.Vue.csproj", "{AFAD48FE-3C94-459A-AEDA-EFDB03E2A5A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.React", "Photino.HelloPhotino.React\HelloPhotino.React.csproj", "{204ED02B-8D3A-4E9B-81BE-EAC37D171790}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.React", "Photino.HelloPhotino.React\HelloPhotino.React.csproj", "{204ED02B-8D3A-4E9B-81BE-EAC37D171790}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.MultiWindow", "Photino.HelloPhotino.MultiWindow\HelloPhotino.MultiWindow.csproj", "{96F39632-277C-48EA-9A6A-9560E90BCEE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.MultiWindow", "Photino.HelloPhotino.MultiWindow\HelloPhotino.MultiWindow.csproj", "{96F39632-277C-48EA-9A6A-9560E90BCEE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.StaticFileServer", "Photino.HelloPhotino.StaticFileServer\HelloPhotino.StaticFileServer.csproj", "{7A86C85D-8B73-4AE7-BE74-CE055BC1DB38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.StaticFileServer", "Photino.HelloPhotino.StaticFileServer\HelloPhotino.StaticFileServer.csproj", "{7A86C85D-8B73-4AE7-BE74-CE055BC1DB38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloPhotino.NET", "Photino.HelloPhotino.NET\HelloPhotino.NET.csproj", "{0DC25BE6-0CC3-4C56-B3B5-B1F457F505E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloPhotino.NET", "Photino.HelloPhotino.NET\HelloPhotino.NET.csproj", "{0DC25BE6-0CC3-4C56-B3B5-B1F457F505E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{ADCF9993-B7AE-4269-85A2-F06DFD49D70E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -72,5 +69,11 @@ Global
 		{0DC25BE6-0CC3-4C56-B3B5-B1F457F505E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DC25BE6-0CC3-4C56-B3B5-B1F457F505E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DC25BE6-0CC3-4C56-B3B5-B1F457F505E9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4086E3B0-0791-41BE-87C1-A986C7E03FB1}
 	EndGlobalSection
 EndGlobal

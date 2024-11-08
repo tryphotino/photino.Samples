@@ -7,7 +7,7 @@ using System.Text;
 namespace HelloPhotino.GRpc
 {
     //NOTE: To hide the console window, go to the project properties and change the Output Type to Windows Application.
-    // Or edit the .cspro file and change the <OutputType> tag from "WinExe" to "Exe".
+    // Or edit the .csproj file and change the <OutputType> tag from "WinExe" to "Exe".
 
     //https://github.com/grpc/grpc-web/tree/master/net/grpc/gateway/examples/helloworld#write-client-code
     class Program

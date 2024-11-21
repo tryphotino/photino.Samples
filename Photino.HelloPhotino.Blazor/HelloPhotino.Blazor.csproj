@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+	<OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	  <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Photino.Blazor" Version="3.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+  	<Content Update="wwwroot\**">
+  	  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  	</Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

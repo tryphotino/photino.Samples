@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <MyProperty Condition="'$(PhotinoNETVersion)' == ''">3.2.3</MyProperty>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Photino.NET" Version="$(PhotinoNETVersion)"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="UserInterface/dist/**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <Target Name="BuildUserInterface" BeforeTargets="BeforeBuild">
+        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..."/>
+        <Exec WorkingDirectory="UserInterface" Command="npm install"/>
+        <Exec WorkingDirectory="UserInterface" Command="npm run build"/>
+    </Target>
+
+</Project>

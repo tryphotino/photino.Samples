@@ -15,8 +15,12 @@
     </None>
   </ItemGroup>
 
+	<PropertyGroup>
+		<PhotinoNETVersion Condition=" '$(PhotinoNETVersion)' == '' ">3.1.18</PhotinoNETVersion>
+	</PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Photino.NET" Version="3.1.18" />
+    <PackageReference Include="Photino.NET" Version="$(PhotinoNETVersion)" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
+//import { MeshFaceMaterial } from 'three/examples/jsm/geometries/MeshFaceMaterial.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { rawFont } from './myfont.js'
 
@@ -32,14 +35,14 @@ export default function ThreeEntryPoint(sceneRef) {
 
   // FONTS
 
-  let loader = new THREE.FontLoader();
+  let loader = new FontLoader();
   let loadedFont = loader.parse( rawFont );
 
     //text3d
     var materialFront = new THREE.MeshBasicMaterial({ color: 0xff1111 });
     var materialSide = new THREE.MeshBasicMaterial({ color: 0x115078 });
     var materialArray = [materialFront, materialSide];
-    var textGeom = new THREE.TextGeometry("PHOTINO",
+    var textGeom = new TextGeometry("PHOTINO",
       {
         size: 8, height: 4, curveSegments: 1,
         font: loadedFont, weight: "bold", style: "normal",
@@ -47,8 +50,7 @@ export default function ThreeEntryPoint(sceneRef) {
         material: 0, extrudeMaterial: 1
       });
 
-    var textMaterial = new THREE.MeshFaceMaterial(materialArray);
-    var textMesh = new THREE.Mesh(textGeom, textMaterial);
+    var textMesh = new THREE.Mesh(textGeom, materialArray);
 
     textGeom.computeBoundingBox();
 

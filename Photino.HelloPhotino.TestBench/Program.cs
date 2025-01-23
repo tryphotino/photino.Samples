@@ -2,10 +2,12 @@
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Text.Json;
 
-namespace HelloPhotino.TestBench
+namespace Photino.HelloPhotino.TestBench
 {
+    //NOTE: To hide the console window, go to the project properties and change the Output Type to Windows Application.
+    // Or edit the .csproj file and change the <OutputType> tag from "WinExe" to "Exe".
+
     class Program
     {
         private static readonly bool _logEvents = true;
@@ -35,6 +37,7 @@ namespace HelloPhotino.TestBench
                 : "wwwroot/photino-logo.png";
 
             //string browserInit = string.Empty;
+
             //if (PhotinoWindow.IsWindowsPlatform)
             //{
             //    //Windows example for WebView2
@@ -69,26 +72,25 @@ namespace HelloPhotino.TestBench
                 //.LoadRawString("<h1>Hello Photino!</h1>")
 
                 //Window settings
-                //.Center()
-                .SetIconFile(iconFile)
-                .SetTitle($"My Photino Window {_windowNumber++}")
+                //.SetIconFile(iconFile)
+                //.SetTitle($"My Photino Window {_windowNumber++}")
                 //.SetChromeless(true)
+                //.SetTransparent(true)
                 //.SetFullScreen(true)
                 //.SetMaximized(true)
                 //.SetMaxSize(640, 480)
-                //.SetMaxWidth(640)
-                //.SetMaxHeight(480)
                 //.SetMinimized(true)
-                //.SetMinSize(320, 240)
-                //.SetMinWidth(320)
                 //.SetMinHeight(240)
+                //.SetMinWidth(320)
+                //.SetMinSize(320, 240)
                 //.SetResizable(false)
                 //.SetTopMost(true)
-                .SetUseOsDefaultSize(false)
-                .SetSize(new Size(800, 600))
+                //.SetUseOsDefaultLocation(false)
+                //.SetUseOsDefaultSize(false)
+                .Center()
+                //.SetSize(new Size(800, 600))
                 //.SetHeight(600)
                 //.SetWidth(800)
-                //.SetUseOsDefaultLocation(false)
                 //.SetLocation(new Point(50, 50))
                 //.SetTop(50)
                 //.SetLeft(50)
@@ -96,24 +98,26 @@ namespace HelloPhotino.TestBench
                 //.MoveTo(20, 20)
                 //.Offset(new Point(150, 150))
                 //.Offset(250, 250)
+                .SetNotificationRegistrationId("8FDF1B15-3408-47A6-8EF5-2B0676B76277")  //Replaces the window title when registering toast notifications
+                .SetNotificationsEnabled(false)
 
                 //Browser settings
                 //.SetContextMenuEnabled(false)
-                //.SetDevToolsEnabled(false)
-                //.SetGrantBrowserPermissions(true)
+                .SetDevToolsEnabled(true)
+                //.SetGrantBrowserPermissions(false)
                 //.SetZoom(150)
 
                 //Browser startup flags
-                //.SetBrowserControlInitParameters(browserInit)
-                //.SetFileSystemAccessEnabled(true)
-                //.SetIgnoreCertificateErrorsEnabled(false)
-                //.SetJavascriptClipboardAccessEnabled(true)
+                //.SetBrowserControlInitParameters("--ignore-certificate-errors ")
+                .SetUserAgent("Custom Photino User Agent")
                 //.SetMediaAutoplayEnabled(true)
+                //.SetFileSystemAccessEnabled(true)
+                //.SetWebSecurityEnabled(true)
+                //.SetJavascriptClipboardAccessEnabled(true)
                 //.SetMediaStreamEnabled(true)
                 //.SetSmoothScrollingEnabled(true)
                 //.SetTemporaryFilesPath(@"C:\Temp")
-                //.SetUserAgent("Custom Photino User Agent")
-                //.SetWebSecurityEnabled(true)
+                //.SetIgnoreCertificateErrorsEnabled(false)
 
                 .RegisterCustomSchemeHandler("app", AppCustomSchemeUsed)
 
@@ -130,7 +134,7 @@ namespace HelloPhotino.TestBench
 
             mainWindow.WaitForClose();
 
-            mainWindow.Center(); //will never happen - this is blocking.
+            Console.WriteLine("Done Blocking!");
         }
 
         private static void PropertyInitStyle()
@@ -139,62 +143,64 @@ namespace HelloPhotino.TestBench
                 ? "wwwroot/photino-logo.ico"
                 : "wwwroot/photino-logo.png";
 
-            //var browserInit = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-            //    ? "--disable-web-security --hide-scrollbars "           //Windows example for WebView2
-            //    : RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
-            //        ? "{ 'set_enable_encrypted_media': true }"          //Linux example for Webkit2Gtk
-            //        : "{ 'setLegacyEncryptedMediaAPIEnabled': true }";  //Mac example for Webkit on Cocoa
+            var browserInit = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? "--disable-web-security --hide-scrollbars "           //Windows example for WebView2
+                : RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                    ? "{ 'set_enable_encrypted_media': true }"          //Linux example for Webkit2Gtk
+                    : "{ 'setLegacyEncryptedMediaAPIEnabled': true }";  //Mac example for Webkit on Cocoa
 
             mainWindow = new PhotinoWindow
             {
-                StartUrl = "wwwroot/main.html",
                 //StartUrl = "https://google.com",
                 //StartUrl = "https://duckduckgo.com/?t=ffab&q=user+agent+&ia=answer",
-                //StartUrl = "https://google.com",
+                StartUrl = "wwwroot/main.html",
                 //StartString = "<h1>Hello Photino!</h1>",
 
                 //Window settings
-                //Centered = true,
                 IconFile = iconFile,
                 Title = $"My Photino Window {_windowNumber++}",
                 //Chromeless = true,
+                //Transparent = true,
                 //FullScreen = true,
                 //Maximized = true,
-                //MaxWidth = 640,
-                //MaxHeight = 480,
+                MaxWidth = 640,
+                MaxHeight = 480,
                 //MaxSize = new Point(640, 480),
                 //Minimized = true,
-                //MinWidth = 320,
-                //MinHeight = 240,
+                MinWidth = 320,
+                MinHeight = 240,
                 //MinSize = new Point(320, 240),
                 //Resizable = false,
                 //TopMost = true,
+                UseOsDefaultLocation = false,
                 UseOsDefaultSize = false,
+                Centered = true,
                 Size = new Size(800, 600),
-                //Height = 600,
-                //Width = 800,
-                //UseOsDefaultLocation = false,
-                //Location = new Point(50, 50),
-                //Top = 50,
-                //Left = 50,
+                Height = 600,
+                Width = 800,
+                Location = new Point(50, 50),
+                Top = 50,
+                Left = 50,
+                NotificationRegistrationId = "8FDF1B15-3408-47A6-8EF5-2B0676B76277",  //Replaces the window title when registering toast notifications
+                NotificationsEnabled = false,
 
                 //Browser settings
-                //ContextMenuEnabled = false,
-                //DevToolsEnabled = false,
-                //GrantBrowserPermissions = false,
-                //Zoom = 150,
+                ContextMenuEnabled = false,
+                DevToolsEnabled = false,
+                GrantBrowserPermissions = false,
+                Zoom = 150,
 
                 //Browser startup flags
-                //BrowserControlInitParameters = browserInit,
-                //UserAgent = "Custom Photino User Agent",
-                //MediaAutoplayEnabled = true,
-                //FileSystemAccessEnabled = true,
-                //WebSecurityEnabled = true,
-                //JavascriptClipboardAccessEnabled = true,
-                //MediaStreamEnabled = true,
-                //SmoothScrollingEnabled = true,
+                BrowserControlInitParameters = browserInit,
+                UserAgent = "Custom Photino User Agent",
+                MediaAutoplayEnabled = true,
+                FileSystemAccessEnabled = true,
+                WebSecurityEnabled = true,
+                JavascriptClipboardAccessEnabled = true,
+                MediaStreamEnabled = true,
+                SmoothScrollingEnabled = true,
                 //TemporaryFilesPath = @"C:\Temp",
-                IgnoreCertificateErrorsEnabled = false,
+                //IgnoreCertificateErrorsEnabled = false,
 
                 WindowCreatingHandler = WindowCreating,
                 WindowCreatedHandler = WindowCreated,
@@ -258,7 +264,7 @@ namespace HelloPhotino.TestBench
             return new MemoryStream(Encoding.UTF8.GetBytes(js));
         }
 
-        private static void MessageReceivedFromWindow(object sender, string message)
+        private static async void MessageReceivedFromWindow(object sender, string message)
         {
             Log(sender, $"MessageReceivedFromWindow Callback Fired.");
 
@@ -274,9 +280,9 @@ namespace HelloPhotino.TestBench
                     //.SetIconFile(iconFile)
                     .Load("wwwroot/main.html")
 
-                    .SetUseOsDefaultLocation(true)
-                    .SetHeight(600)
-                    .SetWidth(800)
+                    //.SetUseOsDefaultLocation(true)
+                    //.SetHeight(600)
+                    //.SetWidth(800)
 
                     .SetGrantBrowserPermissions(false)
 
@@ -353,19 +359,27 @@ namespace HelloPhotino.TestBench
                 currentWindow.SetLeft(currentWindow.Left + 5);
                 currentWindow.SetTop(currentWindow.Top + 5);
             }
+            else if (string.Compare(message, "settransparent", true) == 0)
+            {
+                var t = currentWindow.Transparent;
+                Log(sender, $"Transparent: {t}");
+                currentWindow.SetTransparent(!t);
+            }
             else if (string.Compare(message, "setresizable", true) == 0)
             {
                 currentWindow.SetResizable(!currentWindow.Resizable);
             }
             else if (string.Compare(message, "setsize-up", true) == 0)
             {
-                currentWindow.SetHeight(currentWindow.Height + 5);
-                currentWindow.SetWidth(currentWindow.Width + 5);
+                currentWindow.SetSize(new Size(currentWindow.Width + 5, currentWindow.Height + 5));
+                //currentWindow.SetHeight(currentWindow.Height + 5);
+                //currentWindow.SetWidth(currentWindow.Width + 5);
             }
             else if (string.Compare(message, "setsize-down", true) == 0)
             {
-                currentWindow.SetHeight(currentWindow.Height - 5);
-                currentWindow.SetWidth(currentWindow.Width - 5);
+                currentWindow.SetSize(new Size(currentWindow.Width - 5, currentWindow.Height - 5));
+                //currentWindow.SetHeight(currentWindow.Height - 5);
+                //currentWindow.SetWidth(currentWindow.Width - 5);
             }
             else if (string.Compare(message, "settitle", true) == 0)
             {
@@ -386,7 +400,7 @@ namespace HelloPhotino.TestBench
             }
             else if (string.Compare(message, "sendWebMessage", true) == 0)
             {
-                currentWindow.SendWebMessage("web message");
+                currentWindow.SendWebMessage("web message 🤖");
             }
             else if (string.Compare(message, "setMinSize", true) == 0)
             {
@@ -398,7 +412,7 @@ namespace HelloPhotino.TestBench
             }
             else if (string.Compare(message, "toastNotification", true) == 0)
             {
-                currentWindow.SendNotification("Toast Title", " Toast message!");
+                currentWindow.SendNotification("Toast Title", " Toast message! 🤖");
             }
             else if (string.Compare(message, "showOpenFile", true) == 0)
             {
@@ -414,6 +428,20 @@ namespace HelloPhotino.TestBench
                 else
                     currentWindow.ShowMessage("Open File", "No file chosen", icon: PhotinoDialogIcon.Error);
             }
+            else if (string.Compare(message, "showOpenFileAsync", true) == 0)
+            {
+                var results = await currentWindow.ShowOpenFileAsync(filters: new[]{
+                    ("All files", new [] {"*.*"}),
+                    ("Text files", new [] {"*.txt"}),
+                    ("Image files", new [] {"*.png", "*.jpg", "*.jpeg"}),
+                    ("PDF files", new [] {"*.pdf"}),
+                    ("CSharp files", new [] { "*.cs" })
+                });
+                if (results.Length > 0)
+                    currentWindow.ShowMessage("Open File Async", string.Join(Environment.NewLine, results));
+                else
+                    currentWindow.ShowMessage("Open File Async", "No file chosen", icon: PhotinoDialogIcon.Error);
+            }
             else if (string.Compare(message, "showOpenFolder", true) == 0)
             {
                 var results = currentWindow.ShowOpenFolder(multiSelect: true);
@@ -421,6 +449,14 @@ namespace HelloPhotino.TestBench
                     currentWindow.ShowMessage("Open Folder", string.Join(Environment.NewLine, results));
                 else
                     currentWindow.ShowMessage("Open Folder", "No folder chosen", icon: PhotinoDialogIcon.Error);
+            }
+            else if (string.Compare(message, "showOpenFolderAsync", true) == 0)
+            {
+                var results = await currentWindow.ShowOpenFolderAsync(multiSelect: true);
+                if (results.Length > 0)
+                    currentWindow.ShowMessage("Open Folder Async", string.Join(Environment.NewLine, results));
+                else
+                    currentWindow.ShowMessage("Open Folder Async", "No folder chosen", icon: PhotinoDialogIcon.Error);
             }
             else if (string.Compare(message, "showSaveFile", true) == 0)
             {
@@ -430,9 +466,17 @@ namespace HelloPhotino.TestBench
                 else
                     currentWindow.ShowMessage("Save File", "File not saved", icon: PhotinoDialogIcon.Error);
             }
+            else if (string.Compare(message, "showSaveFileAsync", true) == 0)
+            {
+                var result = await currentWindow.ShowSaveFileAsync();
+                if (result != null)
+                    currentWindow.ShowMessage("Save File Async", result);
+                else
+                    currentWindow.ShowMessage("Save File Async", "File not saved", icon: PhotinoDialogIcon.Error);
+            }
             else if (string.Compare(message, "showMessage", true) == 0)
             {
-                var result = currentWindow.ShowMessage("Title", "Testing...");
+                var result = currentWindow.ShowMessage("Title", "Testing... 🤖");
             }
             else
                 throw new Exception($"Unknown message '{message}'");
@@ -525,4 +569,3 @@ namespace HelloPhotino.TestBench
         }
     }
 }
-

@@ -353,3 +353,6 @@ MigrationBackup/
 .vscode
 .DS_Store
 .angular
+
+#Photino-specific
+/dist

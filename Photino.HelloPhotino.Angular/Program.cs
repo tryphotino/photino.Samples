@@ -1,23 +1,26 @@
 using Photino.NET;
-using PhotinoNET.Server;
+using Photino.NET.Server;
 using System.Drawing;
 using System.Text;
 
 namespace Photino.HelloPhotino.Angular;
+//NOTE: To hide the console window, go to the project properties and change the Output Type to Windows Application.
+// Or edit the .csproj file and change the <OutputType> tag from "WinExe" to "Exe".
 
 class Program
 {
 #if DEBUG
-    public static bool IsDebugMode = true;
+    public static bool IsDebugMode = true;      //serve files from dev server
 #else
-    public static bool IsDebugMode = false;
+    public static bool IsDebugMode = false;     //serve files from asp.net runtime
 #endif
 
     [STAThread]
     static void Main(string[] args)
     {
+        //rename photino-hellophotino-angular to the name of your app listed in your package.json
         PhotinoServer
-            .CreateStaticFileServer(args, 8000, 100, "wwwroot/browser/", out string baseUrl)
+            .CreateStaticFileServer(args, 8000, 100, "wwwroot/photino-hellophotino-angular/browser/", out string baseUrl)
             .RunAsync();
 
         // The appUrl is set to the local development server when in debug mode.

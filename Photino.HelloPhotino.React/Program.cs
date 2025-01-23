@@ -1,16 +1,18 @@
 using Photino.NET;
-using PhotinoNET.Server;
+using Photino.NET.Server;
 using System.Drawing;
 using System.Text;
 
 namespace Photino.HelloPhotino.React;
+//NOTE: To hide the console window, go to the project properties and change the Output Type to Windows Application.
+// Or edit the .csproj file and change the <OutputType> tag from "WinExe" to "Exe".
 
 class Program
 {
 #if DEBUG
-    public static bool IsDebugMode = true;
+    public static bool IsDebugMode = true;      //serve files from dev server
 #else
-    public static bool IsDebugMode = false;
+    public static bool IsDebugMode = false;     //serve files from asp.net runtime
 #endif
 
     [STAThread]

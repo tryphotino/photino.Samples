@@ -17,13 +17,23 @@ class Program
     [STAThread]
     static void Main(string[] args)
     {
-        PhotinoServer
-            .CreateStaticFileServer(args, out string baseUrl)
-            .RunAsync();
+        string appUrl = string.Empty;
+        if (IsDebugMode)
+        {
+            // The appUrl is set to the local development server when in debug mode.
+            // This helps with hot reloading and debugging.
+            appUrl = "http://localhost:5173";
+            Console.WriteLine($"**You are in Debug mode. Make sure your local development server is running on {appUrl}");
+        }
+        else
+        {
+            PhotinoServer
+                .CreateStaticFileServer(args, out string baseUrl)
+                .RunAsync();
 
-        // The appUrl is set to the local development server when in debug mode.
-        // This helps with hot reloading and debugging.
-        string appUrl = IsDebugMode ? "http://localhost:5173" : $"{baseUrl}/index.html";
+            appUrl = $"{baseUrl}/index.html";
+        }
+
         Console.WriteLine($"Serving Vue app at {appUrl}");
 
         // Window title declared here for visibility

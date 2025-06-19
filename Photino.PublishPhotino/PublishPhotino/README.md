@@ -329,7 +329,7 @@ Maintainer: your name <yourname@example.com>
 Package: PublishPhotino
 Version: 1.0.0
 Architecture: amd64
-Depends: libc6 (>= 2.31), gir1.2-gtk-3.0 (>= 3.24), libwebkit2gtk-4.1-0 (>= 2.42)
+Depends: libc6 (>= 2.31), gir1.2-gtk-3.0 (>= 3.24), libwebkit2gtk-4.1-0 (>= 2.42), libnotify4 (>= 0.8)
 Description: PublishPhotino
   A simple Photino application.
 ```
